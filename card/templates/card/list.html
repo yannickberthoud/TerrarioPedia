@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Species{% endblock %}
+
+{% block content %}
+{% if query %}
+    <b>Your research:</b> {{ query }}
+{% endif %}
+{% regroup cards by category as cards_list %}
+{% for card in cards_list %}
+<h2>{{ card.grouper }}</h2>
+    <div class="row">
+        {% for c in card.list %}
+            <div class="col-sm-3">
+                <div class="card mt-1" style="width: 18rem;">
+                    <img src="{{ c.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'card-details' c.category.slug c.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">{{ c.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+{% endblock %}

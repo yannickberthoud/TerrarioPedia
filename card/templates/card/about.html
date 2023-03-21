@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}À propos{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1>À propos</h1>
+        <p>TerrarioPedia est une plateforme d'information concernant le maintien d'animaux sauvage en captivité.</p>
+        <p>Les données présentes sont une moyenne qui peut légèrement variée selon les conditions locales:
+            <ul>
+                <li>Concernant la température, il est communément admis
+                qu'une température au-dessus de 30°C est dangereux pour la majorité des espèces présentes sur le site. Une température
+                inférieur à 20°C entraînera une diminution du rythme biologique des espèces pouvant les mener à moins bien digérer leurs proies et les faire
+                    entrer en somnolance voir hibernation pour les températures en dessous de 14°C.
+                </li>
+                <li>
+                    Concernant l'hygrométrie, les informations présentes sur TerrarioPedia représente une moyenne également qui peut fluctuer selon la configuration
+                externe et interne au terrarium. Il est communément admis qu'une hygrométrie stagnante peut s'avérer dangereux pour certaines espèces (notemment en cas de courants d'air)
+                    et préférable à d'autres.poy
+                </li>
+            </ul>
+        </p>
+        <p>Nous ne pouvons être tenu responsable de la mauvaise interprétation des informations interprétés par les utilisateurs. C'est le rôle de chacun d'adapter les informations présente sur TerrarioPedia à son environement.</p>
+
+    </div>
+</div>
+{% endblock %}

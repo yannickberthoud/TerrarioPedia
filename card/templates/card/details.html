@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ card.get_scientific_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-4">
+        <img src="{{ card.image.url }}" class="img-fluid rounded mt-3" alt="TerrarioPedia - Fiche de maintiens de {{ card.get_scientific_name }}">
+    </div>
+    <div class="col-4">
+        <div class="row"><h1>{{ card.get_scientific_name }}</h1></div>
+        <p class="fs-6 fw-lighter">Espèce{% if not card.is_cites %} non{% endif %} CITES - {{ card.get_bern_convention_display }} de la convention de Berne</p>
+        <h3>Informations générales</h3>
+        <ul class="list-group list-group-flush">
+            {% if card.adult_male_size == card.adult_female_size %}
+                <li class="list-group-item">{{ card.adult_male_size }} cm</li>
+            {% else %}
+                <li class="list-group-item">Taille mâle: {{ card.adult_male_size }} cm</li>
+                <li class="list-group-item">Taille femelle: {{ card.adult_female_size }} cm</li>
+            {% endif %}
+            <li class="list-group-item">Taille des juvéniles: {{ card.born_size }} cm</li>
+            <li class="list-group-item">Période d'activité: {{ card.get_main_activity_period_display }}</li>
+            <li class="list-group-item">Moeurs principale: {{ card.get_main_mores_display }}</li>
+            <li class="list-group-item">Biotopes: {% for environment in card.environments.all %}
+            {{ environment }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}</li>
+            <li class="list-group-item">Toxicologie: {% for venom in card.venom.all %}
+            {{ venom }}{% if not forloop.last %}, {% endif %}{% endfor %}<br />
+            </li>
+            <li class="list-group-item">Proies: {% for prey in card.preys.all %}
+            {{ prey }}{% if not forloop.last %}, {% endif %}
+        {% endfor %}</li>
+        </ul>
+    </div>
+    <div class="col-4 mt-5">
+        <h3 class="mt-5">En captivité</h3>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Difficulté de détention: {{ card.get_detention_difficulty_display }}</li>
+            <li class="list-group-item">Taille du terrarium: {{ card.minimal_vivarium_size }} cm</li>
+            <li class="list-group-item">Température d'activitée: {{ card.temperature }} °C</li>
+            <li class="list-group-item">Humidité: {{ card.humidity }}%</li>
+            <li class="list-group-item">Commentaires: {{ card.comments }}</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+<h1>Foire Aux Questions</h1>
+{% regroup questions by category as questions_list %}
+{% for question in questions_list %}
+<h2>{{ question.grouper }}</h2>
+<div class="accordion" id="Card-panels">
+    {% for q in question.list %}
+    <div class="accordion-item">
+            <h2 class="accordion-header {% if not forloop.first %}mt-3{% endif %}" id="{{q.question}}-{{ q.pk }}">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#{{ q.pk }}" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                {{ q.question }}
+              </button>
+            </h2>
+            <div id="body-general-info" class="accordion-collapse collapse show" aria-labelledby="{{ q.pk }}">
+              <div class="accordion-body">
+                {{ q.answer }}
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+</div>
+  {% endfor %}
+{% endblock %}
