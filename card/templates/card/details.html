@@ -13,7 +13,7 @@
         <h3>Informations générales</h3>
         <ul class="list-group list-group-flush">
             {% if card.adult_male_size == card.adult_female_size %}
-                <li class="list-group-item">{{ card.adult_male_size }} cm</li>
+                <li class="list-group-item">Taille adultes: {{ card.adult_male_size }} cm</li>
             {% else %}
                 <li class="list-group-item">Taille mâle: {{ card.adult_male_size }} cm</li>
                 <li class="list-group-item">Taille femelle: {{ card.adult_female_size }} cm</li>
