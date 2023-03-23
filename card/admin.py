@@ -41,7 +41,7 @@ class CardImageAdmin(admin.StackedInline):
 class CardAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['category',]}),
-        ('Espèce', {'fields': ['genus', 'species', 'adult_male_size', 'adult_female_size', 'preys', 'comments']}),
+        ('Espèce', {'fields': ['genus', 'species', 'adult_male_size', 'adult_female_size', 'distribution', 'preys', 'comments']}),
         ('Mesure de protection', {'fields': ['is_cites', 'bern_convention']}),
         ('Reproduction', {'fields': ['reproduction_type', 'born_size']}),
         ('Activitées', {'fields': ['environments', 'main_mores', 'main_activity_period']}),

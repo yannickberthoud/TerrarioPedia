@@ -19,6 +19,7 @@
                 <li class="list-group-item">Taille femelle: {{ card.adult_female_size }} cm</li>
             {% endif %}
             <li class="list-group-item">Taille des juvéniles: {{ card.born_size }} cm</li>
+            <li class="list-group-item">Distribution: {{ card.distribution }}</li>
             <li class="list-group-item">Période d'activité: {{ card.get_main_activity_period_display }}</li>
             <li class="list-group-item">Moeurs principale: {{ card.get_main_mores_display }}</li>
             <li class="list-group-item">Biotopes: {% for environment in card.environments.all %}

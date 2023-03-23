@@ -93,6 +93,7 @@ class Card(models.Model):
     adult_male_size = models.CharField(max_length=64, verbose_name="Taille adulte mâle")
     adult_female_size = models.CharField(max_length=64, verbose_name="Taille adulte femelle")
     is_cites = models.BooleanField(verbose_name="Enregistré au CITES")
+    distribution = models.CharField(max_length=512)
     comments = models.TextField(verbose_name="Commentaire")
     bern_convention = models.CharField(max_length=1, choices=BERN_CONVENTION, verbose_name="Convention de Berne")
     reproduction_type = models.CharField(max_length=1, choices=REPRODUCTION_TYPE, verbose_name="Type de reproduction")
