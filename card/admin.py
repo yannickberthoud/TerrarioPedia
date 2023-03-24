@@ -44,8 +44,8 @@ class CardAdmin(admin.ModelAdmin):
         ('Espèce', {'fields': ['genus', 'species', 'adult_male_size', 'adult_female_size', 'distribution', 'preys', 'comments']}),
         ('Mesure de protection', {'fields': ['is_cites', 'bern_convention']}),
         ('Reproduction', {'fields': ['reproduction_type', 'born_size']}),
-        ('Activitées', {'fields': ['environments', 'main_mores', 'main_activity_period']}),
-        ('Toxicologie', {'fields': ['venom', 'is_poisonous']}),
+        ('Activitées', {'fields': ['environments', 'character', 'main_mores', 'main_activity_period']}),
+        ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'is_poisonous']}),
         ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature', 'humidity']}),
         ('Image', {'fields': ['image']}),
     ]

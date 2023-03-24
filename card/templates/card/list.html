@@ -11,7 +11,7 @@
     <div class="row">
         {% for c in card.list %}
             <div class="col-sm-3">
-                <div class="card mt-1" style="width: 18rem;">
+                <div class="card mt-1">
                     <img src="{{ c.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">
                   <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'card-details' c.category.slug c.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">{{ c.get_scientific_name }}</a></h5>

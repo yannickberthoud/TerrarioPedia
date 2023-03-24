@@ -88,6 +88,22 @@ class Card(models.Model):
         ('H', 'Difficile'),
         ('V', 'Très difficile')
     )
+    CHARACTERS = (
+        ('F', 'Fuyard'),
+        ('P', 'Placide'),
+        ('M', 'Mordeur'),
+        ('D', 'Démonstratif'),
+        ('C', 'Caractérielle'),
+        ('I', 'Irritable'),
+        ('A', 'Agressif')
+    )
+    DANGEROSITIES = (
+        ('I', 'Inoffensif'),
+        ('L', 'Sans danger'),
+        ('C', 'Pouvant entraîner des dommages'),
+        ('H', 'Dangereux'),
+        ('V', 'Extrêmenent dangereux')
+    )
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name="Famille")
     genus = models.CharField(max_length=64, verbose_name="Genre")
     species = models.CharField(max_length=64, verbose_name="Espèce")
@@ -105,6 +121,8 @@ class Card(models.Model):
     environments = models.ManyToManyField(Environment, verbose_name="Environnements")
     venom = models.ManyToManyField(Venom, verbose_name="Est venimeux")
     is_poisonous = models.BooleanField(verbose_name="Est vénéneux")
+    character = models.CharField(max_length=1, choices=CHARACTERS)
+    dangerosity = models.CharField(max_length=1, choices=DANGEROSITIES)
     temperature = models.PositiveIntegerField(verbose_name="Température")
     humidity = models.PositiveIntegerField(verbose_name="Humidité")
     minimal_vivarium_size = models.CharField(max_length=64, help_text="LxlxH", verbose_name="Dimension minimal du terrarium")
