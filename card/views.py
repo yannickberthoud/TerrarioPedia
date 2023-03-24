@@ -14,7 +14,7 @@ class CardListView(ListView):
     model = Card
     template_name = 'card/list.html'
     context_object_name = 'cards'
-    queryset = Card.objects.order_by('category', 'genus', 'species')
+    queryset = Card.objects.order_by('genus', 'species')
 
 class CategoryListView(ListView):
     model = Card
@@ -25,12 +25,12 @@ class CategoryListView(ListView):
 
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
-        return qs.filter(category__slug=self.kwargs['category'])
+        return qs.filter(category__slug=self.kwargs['category']).order_by('genus', 'species')
 
 def SearchResultsView(request):
     if request.method == "POST":
         query = request.POST["q"]
-        cards = Card.objects.filter(Q(genus__startswith=query) | Q(species__startswith=query))
+        cards = Card.objects.filter(Q(genus__startswith=query) | Q(species__startswith=query)).order_by('genus', 'species')
         return render(request, 'card/list.html', {'cards': cards, 'query': query})
 
 def About(request):
