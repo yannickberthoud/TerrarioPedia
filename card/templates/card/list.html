@@ -3,7 +3,7 @@
 
 {% block content %}
 {% if query %}
-    <b>Your research:</b> {{ query }}
+    <b>Votre recherche:</b> {{ query }}
 {% endif %}
 {% regroup cards by category as cards_list %}
 {% for card in cards_list %}
