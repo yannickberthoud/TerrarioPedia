@@ -63,6 +63,7 @@ class Card(models.Model):
     M_MORES = (
         ('B', 'Fouisseur'),
         ('T', 'Terrestre'),
+        ('S', 'Semi-arboricole'),
         ('A', 'Arboricole')
     )
     M_ACTIVITY_Period = (

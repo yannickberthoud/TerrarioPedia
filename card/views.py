@@ -14,7 +14,7 @@ class CardListView(ListView):
     model = Card
     template_name = 'card/list.html'
     context_object_name = 'cards'
-    queryset = Card.objects.order_by('category')
+    queryset = Card.objects.order_by('category', 'genus', 'species')
 
 class CategoryListView(ListView):
     model = Card
