@@ -38,6 +38,10 @@
                         </tr>
                         {% endif %}
                         <tr>
+                            <th scope="row">Reproduction</th>
+                            <td>{{ card.get_reproduction_type_display }}</td>
+                        </tr>
+                        <tr>
                             <th scope="row">Taille juvénile</th>
                             <td>{{ card.born_size }} cm</td>
                         </tr>
@@ -112,7 +116,7 @@
                         </tr>
                         <tr>
                             <th scope="row">Température d'activitée</th>
-                            <td>{{ card.temperature }} °C</td>
+                            <td>{{ card.temperature_low }} °C / {{ card.temperature_high }} °C</td>
                         </tr>
                         <tr>
                             <th scope="row">Humidité</th>

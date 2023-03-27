@@ -46,7 +46,7 @@ class CardAdmin(admin.ModelAdmin):
         ('Reproduction', {'fields': ['reproduction_type', 'born_size']}),
         ('Activitées', {'fields': ['environments', 'character', 'main_mores', 'main_activity_period']}),
         ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'is_poisonous']}),
-        ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature', 'humidity']}),
+        ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),
         ('Image', {'fields': ['image']}),
     ]
     exclude = ('slug',)
