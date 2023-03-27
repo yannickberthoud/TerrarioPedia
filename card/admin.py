@@ -51,5 +51,6 @@ class CardAdmin(admin.ModelAdmin):
     ]
     exclude = ('slug',)
     list_display = ('genus', 'species')
+    list_filter = ('genus',)
 
 admin.site.register(Card, CardAdmin)
