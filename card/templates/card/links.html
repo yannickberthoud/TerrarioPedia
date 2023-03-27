@@ -1,12 +1,8 @@
 
   <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-    {% if categories %}
-    {% for category in categories %}
     <li>
-      <a href="{% url 'card-category-list' category.slug %}" class="nav-link px-2 link-dark" title="TerrarioPedia - Fiche de maintiens de {{ category.name }}">{{ category.name }}</a>
+      <a href="{% url 'card-category-list' 'serpents' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - Fiche de maintiens de {{ category.name }}">{{ category.name }}</a>
     </li>
-    {% endfor %}
-    {% endif %}
     <li>
       <a href="{% url 'faq-list' %}" class="nav-link px-2 link-dark"  title="TerrarioPedia - Foire aux questions serpents, reptiles et amphibiens">FAQ</a>
     </li>
