@@ -51,6 +51,8 @@ class CardAdmin(admin.ModelAdmin):
     ]
     exclude = ('slug',)
     list_display = ('genus', 'species')
+    search_fields = ['genus', 'species', 'environments__name', 'venom__name', 'temperature_high', 'temperature_low', 'humidity', \
+                     'minimal_vivarium_size']
     list_filter = ('genus',)
 
 admin.site.register(Card, CardAdmin)
