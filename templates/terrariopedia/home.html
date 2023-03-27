@@ -4,7 +4,7 @@
 
 {% block content %}
 {% if cards %}
-<h2>Que souhaitez-vous faire ?</h2>
+<!--<h2>Que souhaitez-vous faire ?</h2>
 <div class="row text-center">
     <div class="col">
         <h3><a href="{% url 'card-list' %}" class="btn btn-primary" title="TerrarioPedia - Discover species">Découvrir des espèces</a></h3>
@@ -12,7 +12,7 @@
     <div class="col">
         <h3><a href="{% url 'faq-list' %}" class="btn btn-warning"  title="TerrarioPedia - Find answer">Trouver des réponses</a></h3>
     </div>
-</div>
+</div>-->
 <h2 class="mt-5">Dernières espèces ajoutées · <span class="fw-lighter"><a href="{% url 'card-category-list' 'serpents' %}" class="text-body text-decoration-none" title="TerrarioPedia - Fiche de maintiens de serpents">Tout voir</a></span></h2>
     <div class="row">
         {% for card in cards %}
