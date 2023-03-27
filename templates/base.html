@@ -18,7 +18,11 @@
         {% load card_extra %}{% get_nav_category %}
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{% url 'search_cards' %}" method="post">
             {% csrf_token %}
-          <input name="q" type="search" class="form-control" placeholder="Recherche d'espèce" aria-label="Search">
+            <!--<select class="form-select" name="g" aria-label="Default select example">
+              <option selected>Genre</option>
+                {% get_genus_options %}
+            </select>-->
+          <input name="q" type="search" class="form-control" placeholder="Rechercher une espèce" aria-label="Search">
         </form>
 
         <!--<div class="dropdown text-end">

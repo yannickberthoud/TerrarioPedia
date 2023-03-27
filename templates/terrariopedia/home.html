@@ -13,7 +13,7 @@
         <h3><a href="{% url 'faq-list' %}" class="btn btn-warning"  title="TerrarioPedia - Find answer">Trouver des réponses</a></h3>
     </div>
 </div>
-<h2>Dernières espèces</h2>
+<h2 class="mt-5">Dernières espèces ajoutées · <span class="fw-lighter"><a href="{% url 'card-category-list' 'serpent' %}" class="text-body text-decoration-none" title="TerrarioPedia - Fiche de maintiens de serpents">Tout voir</a></span></h2>
     <div class="row">
         {% for card in cards %}
             <div class="col-sm-3">
