@@ -30,10 +30,24 @@ class CategoryListView(ListView):
 def SearchResultsView(request):
     if request.method == "POST":
         query = request.POST["q"]
-        #genus = request.POST["genus"]
-        print(query)
-        cards = Card.objects.filter(Q(genus__startswith=query) | Q(species__startswith=query)).order_by('genus', 'species')
+        listing = query.split(" ", 1)
+        genus = listing[0]
+
+        if len(listing) > 1:
+            species = listing[1]
+            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
+        else:
+            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
         return render(request, 'card/list.html', {'cards': cards, 'query': query})
 
+def FilterGenusListView(request):
+    if request.method == "POST":
+        query = request.POST['sFilterGenus']
+        if query != "all":
+            cards = Card.objects.filter(Q(genus__contains=query)).order_by('genus', 'species')
+        else:
+            cards = Card.objects.order_by('genus', 'species')
+
+        return render(request, 'card/list.html', {'cards': cards, 'query': query})
 def About(request):
     return render(request, 'card/about.html')

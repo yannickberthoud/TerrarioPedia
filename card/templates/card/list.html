@@ -5,6 +5,19 @@
 {% if query %}
     <b>Votre recherche:</b> {{ query }}
 {% endif %}
+<form method="POST" action="{% url 'filter_genus' %}" class="row row-cols-lg-auto g-3 align-items-center">
+    {% csrf_token %}
+    <div class="col-12">
+        <select class="form-select" name="sFilterGenus" aria-label="Default select example">
+        <option value="all" selected>Toutes les espèces</option>
+        {% load card_extra %} {% get_genus_options %}
+        </select>
+      </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+    </div>
+</form>
+
 {% regroup cards by category as cards_list %}
 {% for card in cards_list %}
 <h2>{{ card.grouper }}</h2>
