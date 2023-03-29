@@ -5,7 +5,12 @@
 {% if query %}
     <b>Votre recherche:</b> {{ query }}
 {% endif %}
-<form method="POST" action="{% url 'filter_genus' %}" class="row row-cols-lg-auto g-3 align-items-center">
+{% regroup cards by category as cards_list %}
+{% for card in cards_list %}
+<h2>{{ card.grouper }}</h2>
+<div class="row">
+    <div class="col">
+        <form method="POST" action="{% url 'filter_genus' %}" class="row row-cols-lg-auto g-3 align-items-center">
     {% csrf_token %}
     <div class="col-12">
         <select class="form-select" name="sFilterGenus" aria-label="Default select example">
@@ -17,10 +22,8 @@
         <button type="submit" class="btn btn-primary">Filtrer</button>
     </div>
 </form>
-
-{% regroup cards by category as cards_list %}
-{% for card in cards_list %}
-<h2>{{ card.grouper }}</h2>
+    </div>
+</div>
     <div class="row">
         {% for c in card.list %}
             <div class="col-sm-3">
