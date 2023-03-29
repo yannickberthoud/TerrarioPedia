@@ -10,5 +10,5 @@ def get_nav_category():
 
 @register.inclusion_tag('card/genusoptions.html')
 def get_genus_options():
-    genus = Card.objects.values('genus').distinct()
+    genus = Card.objects.values('genus').distinct().order_by('genus')
     return { 'genus': genus}
