@@ -24,8 +24,7 @@
             </select>-->
           <input name="q" type="search" class="form-control" placeholder="Rechercher une espèce" aria-label="Search">
         </form>
-          {% if request.user.is_authenticated %}
-            <div class="dropdown text-end">
+            <!--<div class="dropdown text-end">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ request.user.get_full_name }}
               </a>
@@ -34,8 +33,7 @@
                 <li><a class="dropdown-item" href="#">Profile</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Déconnexion</a></li>
               </ul>
-            </div>
-          {% endif %}
+            </div>-->
       </div>
     </div>
   </header>
