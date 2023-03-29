@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from .views import home
+from django.contrib.auth import views as auth_views
 from card.views import SearchResultsView
 
 urlpatterns = [
