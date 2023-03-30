@@ -76,11 +76,6 @@ class Card(models.Model):
         ('V', 'Vivipare'),
         ('I', 'Ovovivipare'),
     )
-    BERN_CONVENTION = (
-        ('A', 'Annexe I'),
-        ('B', 'Annexe II'),
-        ('C', 'Annexe III'),
-    )
     DIFFICULTIES = (
         ('S', 'Très facile'),
         ('E', 'Facile'),
@@ -110,9 +105,9 @@ class Card(models.Model):
     adult_male_size = models.CharField(max_length=64, verbose_name="Taille adulte mâle")
     adult_female_size = models.CharField(max_length=64, verbose_name="Taille adulte femelle")
     is_cites = models.BooleanField(verbose_name="Enregistré au CITES")
+    annex_cites = models.PositiveIntegerField(verbose_name="Annexe CITES", blank=True)
     distribution = models.CharField(max_length=512)
     comments = models.TextField(verbose_name="Commentaire")
-    bern_convention = models.CharField(max_length=1, choices=BERN_CONVENTION, verbose_name="Convention de Berne")
     reproduction_type = models.CharField(max_length=1, choices=REPRODUCTION_TYPE, verbose_name="Type de reproduction")
     born_size = models.CharField(max_length=64, verbose_name="Taille des juvéniles")
     main_mores = models.CharField(max_length=1, choices=M_MORES, verbose_name="Moeurs")

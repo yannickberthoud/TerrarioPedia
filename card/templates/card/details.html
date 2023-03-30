@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-8">
         <div class="row"><h1>{{ card.get_scientific_name }}</h1>
-        <p class="fs-6 fw-lighter">Espèce{% if not card.is_cites %} non{% endif %} CITES - {{ card.get_bern_convention_display }} de la convention de Berne</p></div>
+        <p class="fs-6 fw-lighter">Espèce{% if not card.is_cites %} non{% endif %} CITES {% if card.annex_cites %}- annexe {{ card.annex_cites }}{% endif %}</p></div>
         <div class="row">
             <div class="table-responsive-sm-12">
                 <table class="table table-responsive-sm-12 caption-top">
