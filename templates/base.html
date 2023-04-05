@@ -10,40 +10,67 @@
 <body>
     <div class="container-fluid">
         <header class="p-3 mb-3 border-bottom">
-    <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-          TerrarioPedia
-        </a>
-        {% load card_extra %}{% get_nav_category %}
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{% url 'search_cards' %}" method="post">
-            {% csrf_token %}
-            <!--<select class="form-select" name="g" aria-label="Default select example">
-              <option selected>Genre</option>
-                {% get_genus_options %}
-            </select>-->
-          <input name="q" type="search" class="form-control" placeholder="Rechercher une espèce" aria-label="Search">
-        </form>
-            <!--<div class="dropdown text-end">
-              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                {{ request.user.get_full_name }}
-              </a>
-              <ul class="dropdown-menu text-small">
-                <li><a class="dropdown-item" href="#">Nouvelle fiche</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="">Déconnexion</a></li>
-              </ul>
-            </div>-->
-      </div>
-    </div>
-  </header>
+            <div class="container">
+              <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
+                  TerrarioPedia
+                </a>
+                {% load card_extra %}{% get_nav_category %}
+                <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search" action="{% url 'search_cards' %}" method="post">
+                    {% csrf_token %}
+                    <!--<select class="form-select" name="g" aria-label="Default select example">
+                      <option selected>Genre</option>
+                        {% get_genus_options %}
+                    </select>-->
+                  <input name="q" type="search" class="form-control" placeholder="Rechercher une espèce" aria-label="Search">
+                </form>
+                    {% if request.user.is_authenticated %}
+                    <div class="dropdown text-end">
+                      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ request.user.get_full_name }}
+                      </a>
+                      <ul class="dropdown-menu text-small">
+                        <!--<li><a class="dropdown-item" href="{% url 'add_card' %}" title="Terrariopedia - Ajouter une fiche d'élevage">Nouvelle fiche</a></li>-->
+                          <!--<li><a class="dropdown-item" href="{% url 'ads' %}" title="Terrariopedia - Petites annonces">Petites annonces</a></li>-->
+                        <li><a class="dropdown-item" href="{% url 'profile' %}" title="Terrariopedia - Mon profile">Profile</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}" title="Terrariopedia - Déconnexion">Déconnexion</a></li>
+                      </ul>
+                    </div>
+                    {% else %}
+                        <div class="text-end">
+                          <a class="btn btn-outline-primary me-2" href="{% url 'login' %}" title="Terrariopedia - Connexion">Connexion</a>
+                          <a class="btn btn-primary" href="{% url 'register' %}" title="Terrariopedia - S'inscrire">S'inscrire</a>
+                        </div>
+                    {% endif %}
+              </div>
+            </div>
+          </header>
     </div>
     <div class="container mt-5">
         {% block content %}{% endblock %}
     </div>
 
+    <footer class="mt-5">
+        <div class="container">
+
+        </div>
+    </footer>
+
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script language="javascript">
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, option))
+    </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PYE2JP68HV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PYE2JP68HV');
+</script>
 </body>
 </html>

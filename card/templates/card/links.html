@@ -6,6 +6,20 @@
     <!--<li>
       <a href="{% url 'faq-list' %}" class="nav-link px-2 link-dark"  title="TerrarioPedia - Foire aux questions serpents, reptiles et amphibiens">FAQ</a>
     </li>-->
+    {% load flatpages %}
+    {% get_flatpages as flatpages %}
+    {% if flatpages %}
+    <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Informations
+          </a>
+          <ul class="dropdown-menu">
+            {% for page in flatpages %}
+                <li><a href="{{ page.url }}" class="nav-link px-2 link-dark" title="TerrarioPedia - {{ page.title }}">{{ page.title }}</a></li>
+            {% endfor %}
+          </ul>
+    </li>
+    {% endif %}
     <li>
       <a href="{% url 'card-about' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - À propos des fiche de maintiens">Informations prioritaires</a>
     </li>

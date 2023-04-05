@@ -1,7 +1,9 @@
 from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.db.models import Q
 from .models import Card
+from .forms import CardForm
 
 
 class CardDetailView(DetailView):
@@ -14,7 +16,7 @@ class CardListView(ListView):
     model = Card
     template_name = 'card/list.html'
     context_object_name = 'cards'
-    queryset = Card.objects.order_by('genus', 'species')
+    queryset = Card.objects.filter(approved=True).order_by('genus', 'species')
 
 class CategoryListView(ListView):
     model = Card
@@ -25,7 +27,7 @@ class CategoryListView(ListView):
 
     def get_queryset(self, **kwargs):
         qs = super().get_queryset(**kwargs)
-        return qs.filter(category__slug=self.kwargs['category']).order_by('genus', 'species')
+        return qs.filter(category__slug=self.kwargs['category'], approved='True').order_by('genus', 'species')
 
 def SearchResultsView(request):
     if request.method == "POST":
@@ -35,19 +37,24 @@ def SearchResultsView(request):
 
         if len(listing) > 1:
             species = listing[1]
-            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
+            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species) & Q(approved='True')).order_by('genus', 'species')
         else:
-            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
+            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus) & Q(approved='True')).order_by('genus', 'species')
         return render(request, 'card/list.html', {'cards': cards, 'query': query})
 
 def FilterGenusListView(request):
     if request.method == "POST":
         query = request.POST['sFilterGenus']
         if query != "all":
-            cards = Card.objects.filter(Q(genus__contains=query)).order_by('genus', 'species')
+            cards = Card.objects.filter(Q(genus__contains=query) & Q(approved='True')).order_by('genus', 'species')
         else:
-            cards = Card.objects.order_by('genus', 'species')
+            cards = Card.objects.filter(approved='True').order_by('genus', 'species')
 
         return render(request, 'card/list.html', {'cards': cards, 'query': query})
 def About(request):
     return render(request, 'card/about.html')
+
+class CardFormView(CreateView):
+    model = Card
+    fields = '__all__'
+    exclude = ['slug']

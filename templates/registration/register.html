@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div id="form_errors">
+            {% for key, value in form.errors.items %}
+                <strong>{{ value }}</strong>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+<!--Register--> 
+<div class="container py-5">
+	<h1>Nouveau membre</h1>
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form|crispy }}
+		<button class="btn btn-primary" type="submit">Valider</button>
+	</form>
+	<p class="text-center">Déjà membre ? <a href="{% url 'login' %}" title="Terrariopedia - Connexion">Connectez-vous</a></p>
+</div>
+
+{% endblock %}

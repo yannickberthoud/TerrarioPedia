@@ -48,9 +48,10 @@ class CardAdmin(admin.ModelAdmin):
         ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'is_poisonous']}),
         ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),
         ('Image', {'fields': ['image']}),
+        ('Approbation', {'fields': ['approved']}),
     ]
     exclude = ('slug',)
-    list_display = ('genus', 'species')
+    list_display = ('genus', 'species', 'approved')
     search_fields = ['genus', 'species', 'environments__name', 'venom__name', 'temperature_high', 'temperature_low', 'humidity', \
                      'minimal_vivarium_size']
     list_filter = ('genus',)

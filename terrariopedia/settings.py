@@ -28,7 +28,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'card',
     'faq',
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'tinymce',
+    'flatpages_tinymce',
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'member'
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -39,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 ]
 
 ROOT_URLCONF = 'terrariopedia.urls'
@@ -116,3 +126,6 @@ MEDIA_URL = '/app/medias/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
