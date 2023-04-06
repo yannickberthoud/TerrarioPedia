@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     'flatpages_tinymce',
     'crispy_forms',
     'crispy_bootstrap5',
-    'member'
+    'member',
+    'django_countries',
+    #'ads',
 ]
 
 SITE_ID = 1

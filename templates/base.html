@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
     <title>TerrarioPedia - {% block title %}{% endblock %}</title>
 </head>
 <body>
@@ -27,12 +28,13 @@
                     {% if request.user.is_authenticated %}
                     <div class="dropdown text-end">
                       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{ request.user.get_full_name }}
+                          <img class="country-select-flag" id="{flag_id}" style="margin: 6px 4px 0" src="{{ request.user.profile.country.flag }}">
+                          {{ request.user.profile_set.country.name }}{{ request.user.get_full_name }}
                       </a>
                       <ul class="dropdown-menu text-small">
-                        <!--<li><a class="dropdown-item" href="{% url 'add_card' %}" title="Terrariopedia - Ajouter une fiche d'élevage">Nouvelle fiche</a></li>-->
-                          <!--<li><a class="dropdown-item" href="" title="Terrariopedia - Petites annonces">Petites annonces</a></li>-->
-                        <li><a class="dropdown-item" href="{% url 'profile' %}" title="Terrariopedia - Mon profile">Profile</a></li>
+                          <!--<li><a class="dropdown-item" href="{% url 'add_card' %}" title="Terrariopedia - Ajouter une fiche d'élevage">Nouvelle fiche</a></li>-->
+                          <!--<li><a class="dropdown-item" href="{% url 'ads-create' %}" title="Terrariopedia - Petites annonces">Publier une annonce</a></li>-->
+                        <li><a class="dropdown-item" href="{% url 'profile' %}" title="Terrariopedia - Mon compte">Mon compte</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout' %}" title="Terrariopedia - Déconnexion">Déconnexion</a></li>
                       </ul>
                     </div>

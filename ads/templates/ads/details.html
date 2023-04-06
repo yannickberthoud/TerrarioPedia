@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ card.get_scientific_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        {% if ads.adsimage_set.all %}
+            {% for img in ads.adsimage_set.all %}
+                <figure class="figure">
+                    <img src="{{ img.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Petites annonces">
+                </figure>
+            {% endfor %}
+        {% else %}
+            Cette annonce ne contient aucune photo.
+        {% endif %}
+    </div>
+    <div class="col-sm-8">
+    <h1>Petite annonce de <img src="{{ ads.owner.profile.country.flag }}" /> {{ ads.owner.username }}</h1>
+    <p>Publié le {{ ads.created_at|date:"d F Y" }} - <a href="mailto:{{ ads.owner.email }}" title="TerrarioPedia - Contacter l'annonce">Contacter l'annonceur</a></p>
+
+        {{ ads.description|linebreaksbr }}
+    </div>
+</div>
+{% endblock %}

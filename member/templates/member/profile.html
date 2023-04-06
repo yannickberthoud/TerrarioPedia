@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock title %}
+
 {% block content %}
-<h1>Mon profile</h1>
+<h1>Mon compte</h1>
+<a href="{% url 'password_change' %}" title="Terrariopedia - Modifier le mot de passe">Modifier le mot de passe</a>
 {% if form.errors %}
     <div class="alert alert-danger alert-dismissible" role="alert">
         <div id="form_errors">
@@ -25,9 +27,10 @@
                             {{ user_form.username }}
                         <label class="small mb-1">Email:</label>
                             {{ user_form.email }}
-                    </div>
-                    <div class="form-group">
-                        <a href="{% url 'password_change' %}" title="Terrariopedia - Modifier le mot de passe">Modifier le mot de passe</a>
+                        <label class="small mb-1">Pays:</label>
+                        {{ profile_form.country }}
+                        {{ profile_form.user }}
+
                     </div>
                 </div>
             </div>

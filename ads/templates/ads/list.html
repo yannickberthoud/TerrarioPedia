@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Petites annonces{% endblock %}
+
+{% block content %}
+{% if query %}
+    <b>Votre recherche:</b> {{ query }}
+{% endif %}
+<div class="row">
+    <div class="col">
+        <form method="POST" action="{# url 'filter_category' #}" class="row row-cols-lg-auto g-3 align-items-center">
+    {% csrf_token %}
+    <div class="col-12">
+        <select class="form-select" name="sFilterGenus" aria-label="Default select example">
+        <option value="all" selected>Toutes les catégories</option>
+        {# load ads_extra #} {# get_categories_options #}
+        </select>
+      </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Filtrer</button>
+    </div>
+</form>
+    </div>
+</div>
+    <div class="row">
+        {% for a in object_list %}
+            <div class="col-sm-3">
+                <div class="card mt-1 border-{% if a.type_of_ads == 'V' %}danger{% elif a.type_of_ads == 'R' %}success{% endif %}">
+                        {% if a.adsimage_set.first %}
+                        <div class="card-header">
+                            <a href="{% url 'ads-details' a.pk %}" class="text-decoration-none" title="TerrarioPedia - Petites annonces"><img src="{{ a.adsimage_set.first.image.url }}" class="rounded mx-auto d-block img-fluid" title="Terrariopedia - Petites annonces" /></a>
+                        </div>
+                        {% endif %}
+
+                  <div class="card-body">
+                    <a href="{% url 'ads-details' a.pk %}" class="link-dark text-decoration-none" title="TerrarioPedia - Petites annonces">{{ a.description|linebreaks|truncatewords:50 }}</a>
+                  </div>
+                    <div class="card-footer">
+                        Publié le {{ a.created_at|date:"d F Y" }}
+                    </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endblock %}
