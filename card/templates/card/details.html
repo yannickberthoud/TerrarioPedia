@@ -5,6 +5,7 @@
 {% block content %}
 <div class="row">
     <div class="col-sm-4">
+        {% if not card.approved %}<span class="text-danger">Cette fiche est en attente d'approbation par les experts.</span>{% endif %}
         <figure class="figure">
             <img src="{{ card.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Fiche de maintiens de {{ card.get_scientific_name }}">
         </figure>

@@ -7,20 +7,20 @@
 <!--<h2>Que souhaitez-vous faire ?</h2>
 <div class="row text-center">
     <div class="col">
-        <h3><a href="{% url 'card-list' %}" class="btn btn-primary" title="TerrarioPedia - Discover species">Découvrir des espèces</a></h3>
+        <h3><a href="{% url 'card-link:card-list' %}" class="btn btn-primary" title="TerrarioPedia - Discover species">Découvrir des espèces</a></h3>
     </div>
     <div class="col">
         <h3><a href="{% url 'faq-list' %}" class="btn btn-warning"  title="TerrarioPedia - Find answer">Trouver des réponses</a></h3>
     </div>
 </div>-->
-<h2 class="mt-5">Dernières espèces ajoutées · <span class="fw-lighter"><a href="{% url 'card-category-list' 'serpents' %}" class="text-body text-decoration-none" title="TerrarioPedia - Fiche de maintiens de serpents">Tout voir</a></span></h2>
+<h2 class="mt-5">Dernières espèces ajoutées · <span class="fw-lighter"><a href="{% url 'card-link:card-category-list' 'serpents' %}" class="text-body text-decoration-none" title="TerrarioPedia - Fiche de maintiens de serpents">Tout voir</a></span></h2>
     <div class="row">
         {% for card in cards %}
             <div class="col-sm-3">
                 <div class="card mt-1">
                     <img src="{{ card.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'card-details' card.category.slug card.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ card.get_scientific_name }}">{{ card.get_scientific_name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'card-link:card-details' card.category.slug card.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ card.get_scientific_name }}">{{ card.get_scientific_name }}</a></h5>
                     <p class="card-text">{{ card.category }}</p>
                   </div>
                 </div>

@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}Nouvelle espèce{% endblock %}
+
 {% block content %}
 {% if form.errors %}
     <div class="alert alert-danger alert-dismissible" role="alert">
@@ -12,10 +14,6 @@
 {% endif %}
 {% load crispy_forms_tags %}
   <h1>Nouvelle espèce</h1>
-  <form method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button class="btn btn-primary" type="submit">Connexion</button>
-  </form>
+    {% crispy form %}
 </div>
 {% endblock %}

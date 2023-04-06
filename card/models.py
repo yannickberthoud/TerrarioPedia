@@ -125,7 +125,7 @@ class Card(models.Model):
     detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien")
     image = models.ImageField(upload_to=card_directory_path)
     slug = models.SlugField(unique=True)
-    approved = models.BooleanField()
+    approved = models.BooleanField(null=True)
 
     class Meta:
         verbose_name = 'Espèce'

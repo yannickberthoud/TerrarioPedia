@@ -2,8 +2,12 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import CreateView
 from django.shortcuts import render
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.urls import reverse
 from .models import Card
 from .forms import CardForm
+
 
 
 class CardDetailView(DetailView):
@@ -54,7 +58,9 @@ def FilterGenusListView(request):
 def About(request):
     return render(request, 'card/about.html')
 
+@method_decorator(login_required, name='dispatch')
 class CardFormView(CreateView):
     model = Card
-    fields = '__all__'
-    exclude = ['slug']
+    form_class = CardForm
+    def get_success_url(self):
+        return reverse('card-link:card-details', kwargs={'category': self.object.category.slug, 'slug': self.object.slug})

@@ -1,7 +1,7 @@
 
   <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
     <li>
-      <a href="{% url 'card-category-list' 'serpents' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - Fiche de maintiens de serpents">Serpents</a>
+      <a href="{% url 'card-link:card-category-list' 'serpents' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - Fiche de maintiens de serpents">Serpents</a>
     </li>
      <!-- <li>
       <a href="{% url 'ads' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - Petites annonces">Petites annonces</a>
@@ -24,6 +24,6 @@
     </li>
     {% endif %}
     <li>
-      <a href="{% url 'card-about' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - À propos des fiche de maintiens">Informations prioritaires</a>
+      <a href="{% url 'card-link:card-about' %}" class="nav-link px-2 link-dark" title="TerrarioPedia - À propos des fiche de maintiens">Informations prioritaires</a>
     </li>
   </ul>
