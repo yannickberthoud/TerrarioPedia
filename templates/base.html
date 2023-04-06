@@ -29,6 +29,7 @@
                     <div class="dropdown text-end">
                       <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                           <img class="country-select-flag" id="{flag_id}" style="margin: 6px 4px 0" src="{{ request.user.profile.country.flag }}">
+                          {% load countries %}
                           {{ request.user.profile_set.country.name }}{{ request.user.get_full_name }}
                       </a>
                       <ul class="dropdown-menu text-small">
