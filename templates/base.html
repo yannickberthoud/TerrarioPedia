@@ -32,8 +32,8 @@
                           <i class="{{ request.user.profile_set.country.flag_css }}"></i> {{ request.user.get_full_name }}
                       </a>
                       <ul class="dropdown-menu text-small">
-                          <li><a class="dropdown-item" href="{% url 'card-link:add_card' %}" title="Terrariopedia - Ajouter une fiche d'élevage">Nouvelle fiche</a></li>
-                          <!--<li><a class="dropdown-item" href="{% url 'ads-create' %}" title="Terrariopedia - Petites annonces">Publier une annonce</a></li>-->
+                          <li><a class="dropdown-item" href="{% url 'card-link:add_card' %}" title="Terrariopedia - Ajouter une fiche d'élevage">Nouvelle fiche</a></li>--
+                          <!--<li><a class="dropdown-item" href="{# url 'ads-create' #}" title="Terrariopedia - Petites annonces">Publier une annonce</a></li>-->
                         <li><a class="dropdown-item" href="{% url 'profile' %}" title="Terrariopedia - Mon compte">Mon compte</a></li>
                         <li><a class="dropdown-item" href="{% url 'logout' %}" title="Terrariopedia - Déconnexion">Déconnexion</a></li>
                       </ul>

@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     'member',
     'django_countries',
-    'ads',
 ]
 
 SITE_ID = 1

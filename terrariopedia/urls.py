@@ -10,7 +10,7 @@ from django.contrib.auth import views as auth_views
 from card.views import SearchResultsView
 
 urlpatterns = [
-    path('petites-annonces/', include('ads.urls')),
+    #path('petites-annonces/', include('ads.urls')),
     path('recherche', SearchResultsView, name='search_cards'),
     path('fiches-de-maintiens/', include(('card.urls', 'card'), namespace="card-link")),
     path('faq', include('faq.urls')),

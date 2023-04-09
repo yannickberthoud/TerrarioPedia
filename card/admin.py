@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Venom, Card, CardImage, Prey, Environment
+from .models import Category, Venom, Card, CardImage, Prey, Environment, ReproductionPeriod
 
 class CategoryAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -38,12 +38,20 @@ class CardImageAdmin(admin.StackedInline):
     model = CardImage
     extra = 1
 
+class ReproductionPeriodAdmion(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['name',]})
+    ]
+    list_display = ('name', )
+
+admin.site.register(ReproductionPeriod, ReproductionPeriodAdmion)
+
 class CardAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['category',]}),
         ('Espèce', {'fields': ['genus', 'species', 'adult_male_size', 'adult_female_size', 'distribution', 'preys', 'comments']}),
         ('Mesure de protection', {'fields': ['is_cites', 'annex_cites']}),
-        ('Reproduction', {'fields': ['reproduction_type', 'born_size']}),
+        ('Reproduction', {'fields': ['reproduction_type', 'reproduction_period', 'born_size']}),
         ('Activitées', {'fields': ['environments', 'character', 'main_mores', 'main_activity_period']}),
         ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'is_poisonous']}),
         ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),

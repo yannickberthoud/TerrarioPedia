@@ -39,6 +39,12 @@
                         </tr>
                         {% endif %}
                         <tr>
+                            <th scope="row">Période de reproduction</th>
+                            <td>{% for reproduction_period in card.reproduction_period.all %}
+                                {{ reproduction_period }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}</td>
+                        </tr>
+                        <tr>
                             <th scope="row">Reproduction</th>
                             <td>{{ card.get_reproduction_type_display }}</td>
                         </tr>
@@ -57,7 +63,7 @@
                     <tr>
                         <th scope="row">Prédation</th>
                         <td>{% for prey in card.preys.all %}
-                                {{ prey }}{% if not forloop.last %}, {% endif %}
+                                {{ prey }}{% if not forloop.last %}<br /> {% endif %}
                             {% endfor %}
                         </td>
                     </tr>
@@ -73,7 +79,7 @@
                         <th scope="row">Toxicologie</th>
                         <td>
                             {% for venom in card.venom.all %}
-                                {{ venom }}{% if not forloop.last %}, {% endif %}
+                                {{ venom }}{% if not forloop.last %}<br /> {% endif %}
                             {% endfor %}
                         </td>
                     </tr>
@@ -94,7 +100,7 @@
                         <tr>
                             <th scope="row">Biotopes</th>
                             <td>{% for environment in card.environments.all %}
-                                    {{ environment }}{% if not forloop.last %}, {% endif %}
+                                    {{ environment }}{% if not forloop.last %}<br /> {% endif %}
                                 {% endfor %}</td>
                         </tr>
                     </tbody>
