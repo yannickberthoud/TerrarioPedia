@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Serpents{% endblock %}
+
+{% block content %}
+{% if query %}
+    <b>Votre recherche:</b> {{ query }}
+{% endif %}
+
+<div class="row">
+    <div class="col-4">
+        <h2>Serpents</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'snake_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de serpent">Nouvelle fiche</a>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        {% for object in objects %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endblock %}

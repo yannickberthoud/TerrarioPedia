@@ -3,31 +3,34 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
-{% if cards %}
-<!--<h2>Que souhaitez-vous faire ?</h2>
-<div class="row text-center">
-    <div class="col">
-        <h3><a href="{% url 'card-link:card-list' %}" class="btn btn-primary" title="TerrarioPedia - Discover species">Découvrir des espèces</a></h3>
-    </div>
-    <div class="col">
-        <h3><a href="{% url 'faq-list' %}" class="btn btn-warning"  title="TerrarioPedia - Find answer">Trouver des réponses</a></h3>
-    </div>
-</div>-->
-<h2 class="mt-5">Dernières espèces ajoutées · <span class="fw-lighter"><a href="{% url 'card-link:card-category-list' 'serpents' %}" class="text-body text-decoration-none" title="TerrarioPedia - Fiche de maintiens de serpents">Tout voir</a></span></h2>
+{% if snakes %}
+<h2 class="mt-5">Derniers serpents ajoutés</span></h2>
     <div class="row">
-        {% for card in cards %}
+        {% for snake in snakes %}
             <div class="col-sm-3">
                 <div class="card mt-1">
-                    <img src="{{ card.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">
+                    <img src="{{ snake.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'card-link:card-details' card.category.slug card.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ card.get_scientific_name }}">{{ card.get_scientific_name }}</a></h5>
-                    <p class="card-text">{{ card.category }}</p>
+                    <h5 class="card-title"><a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">{{ snake.get_scientific_name }}</a></h5>
                   </div>
                 </div>
               </div>
         {% endfor %}
     </div>
-{% else %}
-    Il n'y a actuellement aucune fiche de maintien.
+{% endif %}
+{% if amphibians %}
+<h2 class="mt-5">Derniers amphibiens ajoutés</span></h2>
+    <div class="row">
+        {% for amphibian in amphibians %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ amphibian.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">{{ amphibian.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
 {% endif %}
 {% endblock %}

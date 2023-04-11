@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Nouvelle espèce{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <div id="form_errors">
+            {% for key, value in form.errors.items %}
+                <strong>{{ value }}</strong>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
+{% load crispy_forms_tags %}
+  <h1>Nouvelle espèce</h1>
+    {% crispy form %}
+</div>
+{% endblock %}

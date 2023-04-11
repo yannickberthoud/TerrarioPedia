@@ -5,62 +5,59 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from .models import Card
-from .forms import CardForm
+from .models import Card, Amphibien
+from .forms import SnakeForm, AmphibianForm
 
+class AmphibianListView(ListView):
+    model = Amphibien
+    template_name = 'card/amphibian_list.html'
+    context_object_name = 'objects'
 
+class AmphibianDetailView(DetailView):
+    model = Amphibien
+    template_name = 'card/amphibian_details.html'
+    context_object_name = 'object'
 
-class CardDetailView(DetailView):
+class SnakeDetailView(DetailView):
     model = Card
-    template_name = 'card/details.html'
+    template_name = 'card/snake_details.html'
     slug_url_kwarg = 'slug'
     query_pk_and_slug = True
 
-class CardListView(ListView):
+class SnakeListView(ListView):
     model = Card
-    template_name = 'card/list.html'
-    context_object_name = 'cards'
-    queryset = Card.objects.filter(approved=True).order_by('genus', 'species')
-
-class CategoryListView(ListView):
-    model = Card
-    template_name = 'card/list.html'
-    context_object_name = 'cards'
-    slug_url_kwarg = 'slug'
-    query_pk_and_slug = True
-
-    def get_queryset(self, **kwargs):
-        qs = super().get_queryset(**kwargs)
-        return qs.filter(category__slug=self.kwargs['category'], approved='True').order_by('genus', 'species')
+    template_name = 'card/snake_list.html'
+    context_object_name = 'objects'
 
 def SearchResultsView(request):
     if request.method == "POST":
-        query = request.POST["q"]
+        query = request.POST["query"]
         listing = query.split(" ", 1)
-        genus = listing[0]
+        genus = listing[0].capitalize()
 
         if len(listing) > 1:
             species = listing[1]
-            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species) & Q(approved='True')).order_by('genus', 'species')
+            snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
+            amphibians = Amphibien.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
         else:
-            cards = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus) & Q(approved='True')).order_by('genus', 'species')
-        return render(request, 'card/list.html', {'cards': cards, 'query': query})
-
-def FilterGenusListView(request):
-    if request.method == "POST":
-        query = request.POST['sFilterGenus']
-        if query != "all":
-            cards = Card.objects.filter(Q(genus__contains=query) & Q(approved='True')).order_by('genus', 'species')
-        else:
-            cards = Card.objects.filter(approved='True').order_by('genus', 'species')
-
-        return render(request, 'card/list.html', {'cards': cards, 'query': query})
+            snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
+            amphibians = Amphibien.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
+        return render(request, 'card/list.html', {'snakes': snakes, 'amphibians': amphibians, 'query': query})
 def About(request):
     return render(request, 'card/about.html')
 
 @method_decorator(login_required, name='dispatch')
-class CardFormView(CreateView):
+class SnakeFormView(CreateView):
     model = Card
-    form_class = CardForm
+    form_class = SnakeForm
+    template_name = 'card/snake_form.html'
     def get_success_url(self):
-        return reverse('card-link:card-details', kwargs={'category': self.object.category.slug, 'slug': self.object.slug})
+        return reverse('snake_details', kwargs={'slug': self.object.slug})
+
+@method_decorator(login_required, name='dispatch')
+class AmphibianFormView(CreateView):
+    model = Amphibien
+    form_class = AmphibianForm
+    template_name = 'card/amphibian_form.html'
+    def get_success_url(self):
+        return reverse('amphibian_details', kwargs={'slug': self.object.slug})

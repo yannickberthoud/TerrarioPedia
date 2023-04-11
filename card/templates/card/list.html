@@ -1,40 +1,39 @@
 {% extends 'base.html' %}
-{% block title %}Species{% endblock %}
+{% block title %}Recherche {{ query }}{% endblock %}
 
 {% block content %}
 {% if query %}
     <b>Votre recherche:</b> {{ query }}
 {% endif %}
-{% regroup cards by category as cards_list %}
-{% for card in cards_list %}
-<h2>{{ card.grouper }}</h2>
-<div class="row">
-    <div class="col">
-        <form method="POST" action="{% url 'card-link:filter_genus' %}" class="row row-cols-lg-auto g-3 align-items-center">
-    {% csrf_token %}
-    <div class="col-12">
-        <select class="form-select" name="sFilterGenus" aria-label="Default select example">
-        <option value="all" selected>Toutes les espèces</option>
-        {% load card_extra %} {% get_genus_options %}
-        </select>
-      </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Filtrer</button>
-    </div>
-</form>
-    </div>
-</div>
+{% if snakes %}
     <div class="row">
-        {% for c in card.list %}
+        <h2>Serpents</h2>
+        {% for object in snakes %}
             <div class="col-sm-3">
                 <div class="card mt-1">
-                    <img src="{{ c.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">
+                    <img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'card-link:card-details' c.category.slug c.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ c.get_scientific_name }}">{{ c.get_scientific_name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
                   </div>
                 </div>
               </div>
         {% endfor %}
     </div>
-{% endfor %}
+{% endif %}
+{% if amphibians %}
+
+    <div class="row">
+        <h2>Amphibiens</h2>
+        {% for object in amphibians %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'amphibian_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}

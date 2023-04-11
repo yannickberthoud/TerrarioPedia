@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ object.get_scientific_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        {% if not object.approved %}<span class="text-danger">Cette fiche est en attente d'approbation par les experts.</span>{% endif %}
+        <figure class="figure">
+            <img src="{{ object.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+        </figure>
+        <div class="row">
+            <hr />
+            <div class="col-12">
+                <b>Difficulté de détention</b><br />
+                {% if object.detention_difficulty == 'S' %}
+                <img src="{% static 'image/jauges/1.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.detention_difficulty == 'E' %}
+                <img src="{% static 'image/jauges/2.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.detention_difficulty == 'H' %}
+                <img src="{% static 'image/jauges/3.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.detention_difficulty == 'V' %}
+                <img src="{% static 'image/jauges/4.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+            </div>
+            <hr />
+        </div>
+        <p>
+            {{ object.comments }}
+        </p>
+    </div>
+    <div class="col-sm-8">
+        <div class="row"><h1>{{ object.get_scientific_name }}</h1>
+        <p class="fs-6 fw-lighter">Espèce{% if not object.is_cites %} non{% endif %} CITES {% if object.annex_cites %}- annexe {{ object.annex_cites }}{% endif %}</p></div>
+
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>Informations générales</caption>
+                    <thead></thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Famille</th>
+                        <td>{{ object.get_family_display }}</td>
+                    </tr>
+                        {% if object.adult_male_size == object.adult_female_size %}
+                            <tr>
+                                <th scope="row">Taille adulte</th>
+                                <td>{{ object.adult_male_size }} cm</td>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <th scope="row">Taille mâle</th>
+                            <td>{{ object.adult_male_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille femelle</th>
+                            <td>{{ object.adult_female_size }} cm</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <th scope="row">Période de reproduction</th>
+                            <td>{% for reproduction_period in object.reproduction_period.all %}
+                                {{ reproduction_period }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Relation au milieu aquatique</th>
+                            <td>
+                                {% if object.aquatic_sp %}Espèce aquatique{% elif object.can_swim %}Espèce nageuse{% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille juvénile</th>
+                            <td>{{ object.born_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Moeurs principale</th>
+                            <td>{{ object.get_main_mores_display }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Période d'activité</th>
+                            <td>{{ object.get_main_activity_period_display }}</td>
+                        </tr>
+                    <tr>
+                        <th scope="row">Prédation</th>
+                        <td>{% for prey in object.preys.all %}
+                                {{ prey }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>Environnements</caption>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>{{ object.distribution }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Biotopes</th>
+                            <td>{% for environment in object.environments.all %}
+                                    {{ environment }}{% if not forloop.last %}<br /> {% endif %}
+                                {% endfor %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>En captivité</caption>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Difficulté de détention</th>
+                            <td>{{ object.get_detention_difficulty_display }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille du terrarium</th>
+                            <td>{{ object.minimal_vivarium_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Température d'activitée</th>
+                            <td>{{ object.temperature_low }} °C / {{ object.temperature_high }} °C</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Humidité</th>
+                            <td>{{ object.humidity }}%</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Vie en communauté</th>
+                            <td>{% if object.can_live_in_group %}Acceptée{% else %}Non tolérée{% endif %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
