@@ -27,18 +27,18 @@
                 {% endif %}
             </div>
             <div class="col-4">
-            {% if object.venom_toxicity_risks %}
+            {% if object.venom_risks %}
                 <b>Danger en cas d'envenimation</b><br />
-                {% if object.venom_toxicity_risk == 'F' %}
+                {% if object.venom_risks == 'F' %}
                 <img src="{% static 'image/jauges/1.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
-                {% if object.venom_toxicity_risk == 'R' %}
+                {% if object.venom_risks == 'R' %}
                 <img src="{% static 'image/jauges/2.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
-                {% if object.venom_toxicity_risk == 'S' %}
+                {% if object.venom_risks == 'S' %}
                 <img src="{% static 'image/jauges/3.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
-                {% if object.venom_toxicity_risk == 'D' %}
+                {% if object.venom_risks == 'D' %}
                 <img src="{% static 'image/jauges/4.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
             {% else %}

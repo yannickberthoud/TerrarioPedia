@@ -39,7 +39,7 @@ class CardAdmin(admin.ModelAdmin):
         ('Caractéristiques', {'fields': ['dentition', 'adult_male_size', 'adult_female_size', 'distribution', 'preys', 'comments']}),
         ('Reproduction', {'fields': ['reproduction_type', 'reproduction_period', 'born_size']}),
         ('Activitées', {'fields': ['environments', 'caracter', 'main_mores', 'main_activity_period']}),
-        ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'venom_toxicity_risks']}),
+        ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'venom_risks']}),
         ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),
         ('Image', {'fields': ['image']}),
         ('Approbation', {'fields': ['approved']}),
