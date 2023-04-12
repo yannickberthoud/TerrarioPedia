@@ -105,7 +105,7 @@ class Card(models.Model):
     )
     genus = models.CharField(max_length=64, verbose_name="Genre", help_text="Genre")
     species = models.CharField(max_length=64, verbose_name="Espèce", help_text="espèce sous-espèce")
-    dentition = models.CharField(max_length=1, verbose_name="Dentition", default='A', choices=DENTITIONS)
+
     adult_male_size = models.PositiveIntegerField(verbose_name="Taille adulte mâle", help_text="en cm")
     adult_female_size = models.PositiveIntegerField(verbose_name="Taille adulte femelle", help_text="en cm")
     is_cites = models.BooleanField(verbose_name="Enregistré au CITES")
