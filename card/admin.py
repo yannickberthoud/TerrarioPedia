@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venom, Card, Prey, Environment, ReproductionPeriod, Amphibien
+from .models import Venom, Card, Prey, Environment, ReproductionPeriod, Amphibian
 
 class VenomAdmin(admin.ModelAdmin):
     fieldsets = [

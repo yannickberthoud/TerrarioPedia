@@ -5,16 +5,16 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from .models import Card, Amphibien
+from .models import Card, Amphibian
 from .forms import SnakeForm, AmphibianForm
 
 class AmphibianListView(ListView):
-    model = Amphibien
+    model = Amphibian
     template_name = 'card/amphibian_list.html'
     context_object_name = 'objects'
 
 class AmphibianDetailView(DetailView):
-    model = Amphibien
+    model = Amphibian
     template_name = 'card/amphibian_details.html'
     context_object_name = 'object'
 
@@ -38,10 +38,10 @@ def SearchResultsView(request):
         if len(listing) > 1:
             species = listing[1]
             snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
-            amphibians = Amphibien.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
+            amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
         else:
             snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
-            amphibians = Amphibien.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
+            amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
         return render(request, 'card/list.html', {'snakes': snakes, 'amphibians': amphibians, 'query': query})
 def About(request):
     return render(request, 'card/about.html')
@@ -56,7 +56,7 @@ class SnakeFormView(CreateView):
 
 @method_decorator(login_required, name='dispatch')
 class AmphibianFormView(CreateView):
-    model = Amphibien
+    model = Amphibian
     form_class = AmphibianForm
     template_name = 'card/amphibian_form.html'
     def get_success_url(self):
