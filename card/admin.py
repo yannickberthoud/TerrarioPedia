@@ -69,4 +69,4 @@ class AmphibienAdmin(admin.ModelAdmin):
     search_fields = ['genus', 'species', 'environments__name', 'temperature_high', 'temperature_low', 'humidity', 'minimal_vivarium_size']
     list_filter = ('genus',)
 
-admin.site.register(Amphibien, AmphibienAdmin)
+admin.site.register(Amphibian, AmphibienAdmin)
