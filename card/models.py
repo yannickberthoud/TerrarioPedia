@@ -118,8 +118,8 @@ class Card(models.Model):
     preys = models.ManyToManyField(Prey, verbose_name="Proies", help_text="Proies")
     environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
     venom = models.ManyToManyField(Venom, verbose_name="Est venimeux", help_text="Venin(s)")
-    #venom_risks = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation", choices=VENOM_TOXICITIES_RISK, blank=True)
-    #behavior = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère", help_text="Caractère principal en période d'activité")
+    venom_risks = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation", choices=VENOM_TOXICITIES_RISK, blank=True)
+    behavior = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère", help_text="Caractère principal en période d'activité")
     dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
     temperature_low = models.PositiveIntegerField(verbose_name="Température point froid", help_text="Moyenne basse")
@@ -148,7 +148,7 @@ class Card(models.Model):
     def __str__(self):
         return "{0} {1}".format(self.genus, self.species)
 
-"""
+
 def amphibian_directory_path(instance, filename):
     return 'uploads/images/amphibians/{0}/{1}/{2}'.format(instance.genus, instance.species, filename)
 
@@ -223,4 +223,3 @@ class Amphibian(models.Model):
 
     def __str__(self):
         return "{0} {1}".format(self.genus, self.species)
-"""

@@ -3,7 +3,7 @@
 {% block title %}Accueil{% endblock %}
 
 {% block content %}
-{% if snakes.count >= 1 %}
+{% if snakes %}
 <h2 class="mt-5">Derniers serpents ajoutés</span></h2>
     <div class="row">
         {% for snake in snakes %}
@@ -18,8 +18,8 @@
         {% endfor %}
     </div>
 {% endif %}
-<!--
-{# if amphibians.count >= 1 #}
+
+{% if amphibians %}
 <h2 class="mt-5">Derniers amphibiens ajoutés</span></h2>
     <div class="row">
         {% for amphibian in amphibians %}
@@ -33,5 +33,5 @@
               </div>
         {% endfor %}
     </div>
-{# endif #}-->
+{% endif %}
 {% endblock %}

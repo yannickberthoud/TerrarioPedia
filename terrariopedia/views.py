@@ -1,14 +1,13 @@
 from django.shortcuts import render, redirect
-from card.models import Card#, Amphibian
+from card.models import Card, Amphibian
 from .forms import NewUserForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
-
 def home(request):
     snakes = Card.objects.filter(approved='True').order_by('-id')[:16]
-    #amphibians = Amphibian.objects.filter(approved='True').order_by('-id')[:16]
+    amphibians = Amphibian.objects.filter(approved='True').order_by('-id')[:16]
     return render(request, 'terrariopedia/home.html', {'snakes': snakes, 'amphibians': amphibians})
 
 def register(request):
