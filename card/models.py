@@ -126,7 +126,7 @@ class Card(models.Model):
     humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
     minimal_vivarium_size = models.CharField(max_length=11, help_text="LxlxH en cm", verbose_name="Dimension minimale du terrarium")
     detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien", help_text="Pour maintenir l'espèce ou la manipuler")
-    image = models.ImageField(upload_to=card_directory_path)
+    image = models.ImageField(upload_to=card_directory_path, blank=True)
     slug = models.SlugField(unique=True)
     approved = models.BooleanField(null=True, verbose_name="Approuvé")
 
