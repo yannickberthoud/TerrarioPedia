@@ -179,7 +179,7 @@ class Amphibien(models.Model):
     )
     FAMILIES = (
         ('U', 'Urodèle'),
-        ('C', 'Caudata'),
+        ('A', 'Anoure'),
     )
     family = models.CharField(max_length=1, choices=FAMILIES, verbose_name="Famille")
     genus = models.CharField(max_length=64, verbose_name="Genre", help_text="Genre")
