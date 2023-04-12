@@ -155,7 +155,7 @@ def amphibian_directory_path(instance, filename):
     return 'uploads/images/amphibians/{0}/{1}/{2}'.format(instance.genus, instance.species, filename)
 
 
-class Amphibian(models.Model):
+class Amphibien(models.Model):
     M_MORES = (
         ('B', 'Fouisseur'),
         ('T', 'Terrestre'),
