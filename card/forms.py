@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Card, Amphibien
+from .models import Card, Amphibian
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -17,7 +17,7 @@ class SnakeForm(ModelForm):
 
 class AmphibianForm(ModelForm):
     class Meta:
-        model = Amphibien
+        model = Amphibian
         exclude = ['slug', 'approved']
 
     helper = FormHelper()
