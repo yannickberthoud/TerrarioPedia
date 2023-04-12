@@ -27,7 +27,7 @@
                 {% endif %}
             </div>
             <div class="col-4">
-            {% if object.venom_toxicity_risk %}
+            {% if object.venom_toxicity_risks %}
                 <b>Danger en cas d'envenimation</b><br />
                 {% if object.venom_toxicity_risk == 'F' %}
                 <img src="{% static 'image/jauges/1.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
@@ -120,7 +120,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Comportement dominant</th>
-                        <td>{{ object.get_character_display }}</td>
+                        <td>{{ object.get_caracter_display }}</td>
                     </tr>
                     <tr>
                         <th scope="row">Dangerosité</th>

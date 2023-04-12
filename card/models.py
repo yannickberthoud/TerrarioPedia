@@ -123,9 +123,9 @@ class Card(models.Model):
     preys = models.ManyToManyField(Prey, verbose_name="Proies", help_text="Proies")
     environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
     venom = models.ManyToManyField(Venom, verbose_name="Est venimeux", help_text="Venin(s)")
-    venom_toxicity_risk = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation",
+    venom_toxicity_risks = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation",
                                            choices=VENOM_TOXICITIES_RISK, blank=True)
-    character = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère",
+    caracter = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère",
                                  help_text="Caractère principal en période d'activité")
     dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
