@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venom, Card, Prey, Environment, ReproductionPeriod, Amphibian
+from .models import Venom, Card, Prey, Environment, ReproductionPeriod#, Amphibian
 
 class VenomAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -51,7 +51,7 @@ class CardAdmin(admin.ModelAdmin):
     list_filter = ('genus',)
 
 admin.site.register(Card, CardAdmin)
-
+"""
 class AmphibienAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['family',]}),
@@ -70,3 +70,4 @@ class AmphibienAdmin(admin.ModelAdmin):
     list_filter = ('genus',)
 
 admin.site.register(Amphibian, AmphibienAdmin)
+"""
