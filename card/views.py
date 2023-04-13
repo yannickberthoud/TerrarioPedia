@@ -13,6 +13,7 @@ class AmphibianListView(ListView):
     model = Amphibian
     template_name = 'card/amphibian_list.html'
     context_object_name = 'objects'
+    queryset = Amphibian.objects.order_by('genus', 'species')
 
 class AmphibianDetailView(DetailView):
     model = Amphibian
@@ -29,6 +30,7 @@ class SnakeListView(ListView):
     model = Card
     template_name = 'card/snake_list.html'
     context_object_name = 'objects'
+    queryset = Card.objects.order_by('genus', 'species')
 
 def SearchResultsView(request):
     if request.method == "POST":
