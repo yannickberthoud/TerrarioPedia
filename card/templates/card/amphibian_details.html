@@ -85,6 +85,12 @@
                             <th scope="row">Période d'activité</th>
                             <td>{{ object.get_main_activity_period_display }}</td>
                         </tr>
+                        {% if object.call_volume %}
+                        <tr>
+                            <th scope="row">Volume du champs</th>
+                            <td>{{ object.get_call_volume_display }}</td>
+                        </tr>
+                        {% endif %}
                     <tr>
                         <th scope="row">Prédation</th>
                         <td>{% for prey in object.preys.all %}

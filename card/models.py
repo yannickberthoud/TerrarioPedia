@@ -164,7 +164,7 @@ class Amphibian(models.Model):
         ('D', 'Diurne'),
     )
     DIFFICULTIES = (
-        ('S', 'Pour éleveur débutant (premier serpent)'),
+        ('S', 'Pour éleveur débutant (premier amphibien)'),
         ('E', 'Pour éleveur ayant déjà une base'),
         ('H', 'Pour éleveur expérimenté'),
         ('V', 'Pour éleveur très expérimenté'),
@@ -192,6 +192,7 @@ class Amphibian(models.Model):
     main_mores = models.CharField(max_length=1, choices=M_MORES, verbose_name="Moeurs", help_text="Moeurs")
     main_activity_period = models.CharField(max_length=1, choices=M_ACTIVITY_Period, verbose_name="Période d'activité",
                                             help_text="Période principale")
+    call_volume = models.CharField(max_length=1, choices=CRY_VOL, verbose_name="Volume du champs", blank=True)
     preys = models.ManyToManyField(Prey, verbose_name="Proies", help_text="Proies")
     environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
