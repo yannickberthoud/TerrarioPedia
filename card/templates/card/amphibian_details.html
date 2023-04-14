@@ -67,11 +67,14 @@
                                 {{ reproduction_period }}{% if not forloop.last %}<br /> {% endif %}
                             {% endfor %}</td>
                         </tr>
+
                         <tr>
-                            <th scope="row">Relation au milieu aquatique</th>
-                            <td>
-                                {% if object.aquatic_sp %}Espèce aquatique{% elif object.can_swim %}Espèce nageuse{% endif %}
-                            </td>
+                            <th scope="row">Espèce aquatique</th>
+                            <td>{% if object.aquatic_sp %}Oui{% else %}Non{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Espèce nageuse</th>
+                            <td>{% if object.can_swim %}Oui{% else %}Non{% endif %}</td>
                         </tr>
                         <tr>
                             <th scope="row">Taille juvénile</th>
