@@ -154,6 +154,7 @@ def amphibian_directory_path(instance, filename):
 
 class Amphibian(models.Model):
     M_MORES = (
+        ('W', 'Aquatique'),
         ('B', 'Fouisseur'),
         ('T', 'Terrestre'),
         ('A', 'Arboricole')
