@@ -152,6 +152,16 @@ class Card(models.Model):
 def amphibian_directory_path(instance, filename):
     return 'uploads/images/amphibians/{0}/{1}/{2}'.format(instance.genus, instance.species, filename)
 
+class AmphibianLifeCommunity(models.Model):
+    name = models.CharField(max_length=128, verbose_name="Nom")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Amphibien : vie communautaire'
+        verbose_name_plural = 'Amphibiens : vies communautaires'
+
 class Amphibian(models.Model):
     M_MORES = (
         ('W', 'Aquatique'),
@@ -201,7 +211,7 @@ class Amphibian(models.Model):
     humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
     can_swim = models.BooleanField(verbose_name="Espèce nageuse")
     aquatic_sp = models.BooleanField(verbose_name="Espèce aquatique")
-    can_live_in_group = models.BooleanField(verbose_name="Peut vivre en groupe")
+    life_community = models.ManyToManyField(AmphibianLifeCommunity, verbose_name="Peut vivre en communauté", blank=True, null=True)
     minimal_vivarium_size = models.CharField(max_length=11, help_text="LxlxH en cm",
                                              verbose_name="Dimension minimale du terrarium")
     detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien",

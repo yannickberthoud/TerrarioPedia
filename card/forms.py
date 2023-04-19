@@ -26,7 +26,7 @@ class SnakeFilterForm(ModelForm):
 class AmphibianFilterForm(ModelForm):
     class Meta:
         model = Amphibian
-        fields = ('genus', 'species', 'detention_difficulty', 'call_volume', 'can_live_in_group')
+        fields = ('genus', 'species', 'detention_difficulty', 'call_volume', 'life_community')
     helper = FormHelper()
     helper.add_input(Submit('submit', 'Filtrer', css_class='btn-primary'))
     help.form_method = 'POST'

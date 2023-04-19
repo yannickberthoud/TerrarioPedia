@@ -146,7 +146,9 @@
                         </tr>
                         <tr>
                             <th scope="row">Vie en communauté</th>
-                            <td>{% if object.can_live_in_group %}Acceptée{% else %}Non tolérée{% endif %}</td>
+                            <td>{% for lc in object.life_community.all %}
+                                {{ lc }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}</td>
                         </tr>
                     </tbody>
                 </table>
