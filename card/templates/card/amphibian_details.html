@@ -11,19 +11,19 @@
         </figure>
         <div class="row">
             <hr />
-            <div class="col-12">
+            <div class="col-sm-12">
                 <b>Difficulté de détention</b><br />
                 {% if object.detention_difficulty == 'S' %}
-                <img src="{% static 'image/jauges/1.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
                 {% if object.detention_difficulty == 'E' %}
-                <img src="{% static 'image/jauges/2.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                <img src="{% static 'image/jauges/2.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
                 {% if object.detention_difficulty == 'H' %}
-                <img src="{% static 'image/jauges/3.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                <img src="{% static 'image/jauges/3.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
                 {% if object.detention_difficulty == 'V' %}
-                <img src="{% static 'image/jauges/4.png' %}" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
             </div>
             <hr />
