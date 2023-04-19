@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Serpents{% endblock %}
+
+{% block content %}
+{% if snakes %}
+<div class="row">
+    <div class="col-4">
+        <h2>Serpents</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'snake_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de serpent">Nouvelle fiche</a>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        {% for snake in snakes %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ snake.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">{{ snake.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% if amphibians %}
+<div class="row">
+    <div class="col-4">
+        <h2>Amphibiens</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'amphibian_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien d'amphibien">Nouvelle fiche</a>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        {% for amphibian in amphibians %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ amphibian.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">{{ amphibian.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endif %}
+{% endblock %}

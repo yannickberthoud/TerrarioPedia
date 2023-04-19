@@ -15,6 +15,22 @@ class SnakeForm(ModelForm):
     helper.add_input(Submit('submit', 'Sauvegarder', css_class='btn-primary'))
     helper.form_method = 'POST'
 
+class SnakeFilterForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ('genus', 'species', 'detention_difficulty', 'venom', 'venom_risks')
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Filtrer', css_class='btn-primary'))
+    help.form_method = 'POST'
+
+class AmphibianFilterForm(ModelForm):
+    class Meta:
+        model = Amphibian
+        fields = ('genus', 'species', 'detention_difficulty', 'call_volume', 'can_live_in_group')
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Filtrer', css_class='btn-primary'))
+    help.form_method = 'POST'
+
 
 class AmphibianForm(ModelForm):
     class Meta:

@@ -35,9 +35,13 @@ class SnakeListView(ListView):
 def SearchResultsView(request):
     if request.method == "POST":
         query = request.POST["query"]
+        snakes = Card.objects.filter(Q(genus__contains=query) | Q(species__contains=query)).order_by('genus', 'species')
+        amphibians = Amphibian.objects.filter(Q(genus__contains=query) | Q(species__contains=query)).order_by('genus', 'species')
+
+        """
         listing = query.split(" ", 1)
         genus = listing[0].capitalize()
-
+        
         if len(listing) > 1:
             species = listing[1]
             snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
@@ -45,7 +49,8 @@ def SearchResultsView(request):
         else:
             snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
             amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
-        return render(request, 'card/list.html', {'snakes': snakes, 'query': query}) #'amphibians': amphibians, 'query': query})
+        """
+        return render(request, 'card/search.html', {'snakes': snakes, 'query': query, 'amphibians':amphibians}) #'amphibians': amphibians, 'query': query})
 def About(request):
     return render(request, 'card/about.html')
 
