@@ -6,8 +6,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 def home(request):
-    snakes = Card.objects.filter(approved='True').order_by('-id')[:16]
-    amphibians = Amphibian.objects.filter(approved='True').order_by('-id')[:16]
+    snakes = Card.objects.order_by('-id')[:6]
+    amphibians = Amphibian.objects.order_by('-id')[:6]
     return render(request, 'terrariopedia/home.html', {'snakes': snakes, 'amphibians': amphibians})
 
 def register(request):
