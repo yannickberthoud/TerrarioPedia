@@ -124,14 +124,6 @@
                         <th scope="row">Dangerosité</th>
                         <td>{{ object.get_dangerosity_display }}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">Toxicologie</th>
-                        <td>
-                            {% for venom in card.venom.all %}
-                                <span data-toggle="tooltip" title="{{ venom.effects }}">{{ venom }}{% if not forloop.last %}<br /> {% endif %}
-                            {% endfor %}
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>
