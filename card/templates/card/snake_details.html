@@ -130,8 +130,27 @@
                         <th scope="row">Toxicologie</th>
                         <td>
                             {% for venom in card.venom.all %}
-                                <span data-toggle="tooltip" title="{{ venom.effects }}">{{ venom }}{% if not forloop.last %}<br /> {% endif %}
+                                <a class="text-decoration-none" href="#" data-bs-toggle="modal" data-bs-target="#venom{{ forloop.counter }}">{{ venom }}</a>{% if not forloop.last %}<br /> {% endif %}
+
+
+                            <div id="venom{{ forloop.counter }}" class="modal" tabindex="-1">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">{{ venom }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>{{ venom.effects }}</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                             {% endfor %}
+
                         </td>
                     </tr>
                     </tbody>
