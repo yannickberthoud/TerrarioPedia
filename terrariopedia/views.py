@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
-from card.models import Card, Amphibian
+from card.models import Card, Amphibian, Lizard
 from .forms import NewUserForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 
 def home(request):
-    snakes = Card.objects.order_by('-id')[:6]
-    amphibians = Amphibian.objects.order_by('-id')[:6]
-    return render(request, 'terrariopedia/home.html', {'snakes': snakes, 'amphibians': amphibians})
+    snakes = Card.objects.order_by('-id')[:4]
+    lizards = Lizard.objects.order_by('-id')[:4]
+    amphibians = Amphibian.objects.order_by('-id')[:4]
+    return render(request, 'terrariopedia/home.html', {'snakes': snakes, 'amphibians': amphibians, 'lizards':lizards})
 
 def register(request):
         if request.method == "POST":

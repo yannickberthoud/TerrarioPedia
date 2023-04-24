@@ -7,7 +7,8 @@ from django.conf.urls.static import static
 
 from .views import home, register, view_login, view_logout
 from django.contrib.auth import views as auth_views
-from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResultsView, AmphibianListView, AmphibianFormView, AmphibianDetailView
+from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResultsView, AmphibianListView, AmphibianFormView, AmphibianDetailView, \
+    LizardListView, LizardDetailView, LizardFormView
 
 urlpatterns = [
     path('recherche', SearchResultsView, name='search_cards'),
@@ -20,6 +21,10 @@ urlpatterns = [
     path('fiches-de-maintiens-amphibiens/', AmphibianListView.as_view(), name="amphibian_list"),
     path('fiches-de-maintiens-amphibiens/ajouter/', AmphibianFormView.as_view(), name="amphibian_create"),
     path('fiches-de-maintiens-amphibiens/<slug:slug>/', AmphibianDetailView.as_view(), name="amphibian_details"),
+
+    path('fiches-de-maintiens-lezards/', LizardListView.as_view(), name="lizard_list"),
+    path('fiches-de-maintiens-lezards/ajouter/', LizardFormView.as_view(), name="lizard_create"),
+    path('fiches-de-maintiens-lezards/<slug:slug>/', LizardDetailView.as_view(), name="lizard_details"),
 
     path('admin/', admin.site.urls),
 

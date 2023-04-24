@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ card.get_scientific_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        {% if not object.approved %}<span class="text-danger">Cette fiche est en attente d'approbation par les experts.</span>{% endif %}
+        <figure class="figure">
+            <img src="{{ object.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+        </figure>
+        <div class="row">
+            <hr />
+            <div class="col-sm-6 fs-6">
+                Difficulté de détention<br />
+                {% if object.detention_difficulty == 'S' %}
+                <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.detention_difficulty == 'E' %}
+                <img src="{% static 'image/jauges/2.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" /><br />
+                {% endif %}
+                {% if object.detention_difficulty == 'H' %}
+                <img src="{% static 'image/jauges/3.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.detention_difficulty == 'V' %}
+                <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+            </div>
+            <div class="col-sm-6 fs-6">
+            {% if object.venom_risks %}
+                Danger de l'envenimation<br />
+                {% if object.venom_risks == 'F' %}
+                <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.venom_risks == 'R' %}
+                <img src="{% static 'image/jauges/2.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.venom_risks == 'S' %}
+                <img src="{% static 'image/jauges/3.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.venom_risks == 'D' %}
+                <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+            {% else %}
+                Danger de la morsure<br />
+                {% if object.dangerosity == 'I' %}
+                <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.dangerosity == 'C' %}
+                <img src="{% static 'image/jauges/2.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.dangerosity == 'H' %}
+                <img src="{% static 'image/jauges/3.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+                {% if object.dangerosity == 'V' %}
+                <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
+                {% endif %}
+
+            {% endif %}
+           </div>
+            <hr />
+        </div>
+        <p>
+            {{ object.comments }}
+        </p>
+    </div>
+    <div class="col-sm-8">
+        <div class="row"><h1>{{ object.get_scientific_name }}</h1>
+        <p class="fs-6 fw-lighter">Espèce{% if not object.is_cites %} non{% endif %} CITES {% if object.annex_cites %}- annexe {{ object.annex_cites }}{% endif %}</p></div>
+
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>Informations générales</caption>
+                    <thead></thead>
+                    <tbody>
+                        {% if object.adult_male_size == object.adult_female_size %}
+                            <tr>
+                                <th scope="row">Taille adulte</th>
+                                <td>{{ object.adult_male_size }} cm</td>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <th scope="row">Taille mâle</th>
+                            <td>{{ object.adult_male_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille femelle</th>
+                            <td>{{ object.adult_female_size }} cm</td>
+                        </tr>
+                        {% endif %}
+                        {% if object.male_tail_size == object.female_tail_size %}
+                            <tr>
+                                <th scope="row">Taille de la queue</th>
+                                <td>{{ object.male_tail_size }} mm</td>
+                            </tr>
+                        {% else %}
+                        <tr>
+                            <th scope="row">Taille de la queue du mâle</th>
+                            <td>{{ object.male_tail_size }} mm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille de la queue de la femelle</th>
+                            <td>{{ object.female_tail_size }} mm</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                          <th scope="row">Queue préhensile</th>
+                          <td>{% if prehensile_queue %}Oui{% else %}Non{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Période de reproduction</th>
+                            <td>{% for reproduction_period in object.reproduction_period.all %}
+                                {{ reproduction_period }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Reproduction</th>
+                            <td>{{ object.get_reproduction_type_display }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille juvénile</th>
+                            <td>{{ object.born_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Moeurs principale</th>
+                            <td>{{ object.get_main_mores_display }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Période d'activité</th>
+                            <td>{{ object.get_main_activity_period_display }}</td>
+                        </tr>
+                    <tr>
+                        <th scope="row">Prédation</th>
+                        <td>{% for prey in object.preys.all %}
+                                {{ prey }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Comportement dominant</th>
+                        <td>{{ object.get_behavior_display }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dangerosité</th>
+                        <td>{{ object.get_dangerosity_display }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Toxicologie</th>
+                        <td>
+                            {% for venom in card.venom.all %}
+                                <span data-toggle="tooltip" title="{{ venom.effects }}">{{ venom }}{% if not forloop.last %}<br /> {% endif %}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>Environnements</caption>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Distribution</th>
+                            <td>{{ object.distribution }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Biotopes</th>
+                            <td>{% for environment in object.environments.all %}
+                                    {{ environment }}{% if not forloop.last %}<br /> {% endif %}
+                                {% endfor %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                <table class="table table-responsive-sm-12 caption-top">
+                    <caption>En captivité</caption>
+                    <thead></thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Difficulté de détention</th>
+                            <td>{{ object.get_detention_difficulty_display }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Taille du terrarium</th>
+                            <td>{{ object.minimal_vivarium_size }} cm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Température d'activitée</th>
+                            <td>{{ object.temperature_low }} °C / {{ object.temperature_high }} °C</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Humidité</th>
+                            <td>{{ object.humidity }}%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

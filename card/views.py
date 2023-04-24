@@ -5,8 +5,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from .models import Card, Amphibian
-from .forms import SnakeForm, AmphibianForm
+from .models import Card, Amphibian, Lizard
+from .forms import SnakeForm, AmphibianForm, LizardForm
 
 
 class AmphibianListView(ListView):
@@ -15,9 +15,20 @@ class AmphibianListView(ListView):
     context_object_name = 'objects'
     queryset = Amphibian.objects.order_by('genus', 'species')
 
+class LizardListView(ListView):
+    model = Lizard
+    template_name = 'card/lizard_list.html'
+    context_object_name = 'objects'
+    queryset = Lizard.objects.order_by('genus', 'species')
+
 class AmphibianDetailView(DetailView):
     model = Amphibian
     template_name = 'card/amphibian_details.html'
+    context_object_name = 'object'
+
+class LizardDetailView(DetailView):
+    model = Lizard
+    template_name = 'card/lizard_details.html'
     context_object_name = 'object'
 
 class SnakeDetailView(DetailView):
@@ -37,6 +48,7 @@ def SearchResultsView(request):
         query = request.POST["query"]
         snakes = Card.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
         amphibians = Amphibian.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
+        lizards = Lizard.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
 
         """
         listing = query.split(" ", 1)
@@ -50,7 +62,7 @@ def SearchResultsView(request):
             snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
             amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
         """
-        return render(request, 'card/search.html', {'snakes': snakes, 'query': query, 'amphibians':amphibians}) #'amphibians': amphibians, 'query': query})
+        return render(request, 'card/search.html', {'snakes': snakes, 'query': query, 'amphibians':amphibians, 'lizards':lizards}) #'amphibians': amphibians, 'query': query})
 def About(request):
     return render(request, 'card/about.html')
 
@@ -70,3 +82,10 @@ class AmphibianFormView(CreateView):
     def get_success_url(self):
         return reverse('amphibian_details', kwargs={'slug': self.object.slug})
 
+@method_decorator(login_required, name='dispatch')
+class LizardFormView(CreateView):
+    model = Lizard
+    form_class = LizardForm
+    template_name = 'card/lizard_form.html'
+    def get_success_url(self):
+        return reverse('lizard_details', kwargs={'slug': self.object.slug})

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Venom, Card, Prey, Environment, ReproductionPeriod, Amphibian, AmphibianLifeCommunity
+from .models import Venom, Card, Prey, Environment, ReproductionPeriod, Amphibian, AmphibianLifeCommunity, Lizard
 
 class VenomAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -79,3 +79,22 @@ class AmphibienAdmin(admin.ModelAdmin):
     list_filter = ('genus',)
 
 admin.site.register(Amphibian, AmphibienAdmin)
+
+class LizardAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Espèce', {'fields': ['genus', 'species', 'is_cites', 'annex_cites']}),
+        ('Caractéristiques', {'fields': ['adult_male_size', 'male_tail_size', 'adult_female_size', 'female_tail_size', 'prehensile_tail', 'distribution', 'preys', 'comments']}),
+        ('Reproduction', {'fields': ['reproduction_type', 'reproduction_period', 'born_size']}),
+        ('Activitées', {'fields': ['environments', 'behavior', 'main_mores', 'main_activity_period']}),
+        ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'venom_risks']}),
+        ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),
+        ('Image', {'fields': ['image']}),
+        ('Approbation', {'fields': ['approved']}),
+    ]
+    exclude = ('slug',)
+    list_display = ('genus', 'species', 'approved')
+    search_fields = ['genus', 'species', 'environments__name', 'venom__name', 'temperature_high', 'temperature_low', 'humidity', \
+                     'minimal_vivarium_size']
+    list_filter = ('genus',)
+
+admin.site.register(Lizard, LizardAdmin)

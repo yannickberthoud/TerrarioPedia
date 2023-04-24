@@ -9,19 +9,21 @@
         <h1>Toute la terrariophilie en un même endroit.</h1>
         <h2>Maitrisez votre passion grâce à des fiches claires et efficaces.</h2>
         <a href="{% url 'amphibian_list' %}" class="text-decoration-none fw-bolder me-3" title="Terrariopedia - Voir les fiches d'élevage d'amphibiens">Amphibiens</a>
-        <a href="{% url 'snake_list' %}" class="text-decoration-none fw-bolder" title="Terrariopedia - Voir les fiches d'élevages de serpents">Serpents</a>
+        <a href="{% url 'lizard_list' %}" class="text-decoration-none fw-bolder me-3" title="Terrariopedia - Voir les fiches d'élevages de lézard">Lézard</a>
+        <a href="{% url 'snake_list' %}" class="text-decoration-none fw-bolder me-3" title="Terrariopedia - Voir les fiches d'élevages de serpents">Serpents</a>
+
         <hr />
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <h2 class="mt-5 text-center">Derniers amphibiens ajoutés</span></h2>
         <hr />
     <div class="row">
         {% for amphibian in amphibians %}
             <div class="col-md-6  col-sm-6">
                 <div class="card mt-1">
-                    <img src="{{ amphibian.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">
+                    <img src="{{ amphibian.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">
                   <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">{{ amphibian.get_scientific_name }}</a></h5>
                   </div>
@@ -30,14 +32,30 @@
         {% endfor %}
     </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+        <h2 class="mt-5 text-center">Derniers Lézards ajoutés</span></h2>
+        <hr />
+    <div class="row">
+        {% for lizard in lizards %}
+            <div class="col-md-6  col-sm-6">
+                <div class="card mt-1">
+                    <img src="{{ lizard.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}">{{ lizard.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+    </div>
+    <div class="col-md-4">
         <h2 class="mt-5 text-center">Derniers serpents ajoutés</span></h2>
         <hr />
         <div class="row">
             {% for snake in snakes %}
                 <div class="col-md-6 col-sm-6">
                     <div class="card mt-1">
-                        <img src="{{ snake.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">
+                        <img src="{{ snake.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">
                       <div class="card-body">
                         <h5 class="card-title"><a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">{{ snake.get_scientific_name }}</a></h5>
                       </div>

@@ -235,3 +235,96 @@ class Amphibian(models.Model):
 
     def __str__(self):
         return "{0} {1}".format(self.genus, self.species)
+
+def lizards_directory_path(instance, filename):
+    return 'uploads/images/lizards/{0}/{1}/{2}'.format(instance.genus, instance.species, filename)
+
+class Lizard(models.Model):
+    M_MORES = (
+        ('B', 'Fouisseur'),
+        ('T', 'Terrestre'),
+        ('S', 'Semi-arboricole'),
+        ('A', 'Arboricole')
+    )
+    M_ACTIVITY_Period = (
+        ('N', 'Nocturne'),
+        ('T', 'Crépusculaire'),
+        ('D', 'Diurne'),
+    )
+    REPRODUCTION_TYPE = (
+        ('O', 'Ovipare'),
+        ('V', 'Vivipare'),
+        ('I', 'Ovovivipare'),
+    )
+    DIFFICULTIES = (
+        ('S', 'Pour éleveur débutant (premier serpent)'),
+        ('E', 'Pour éleveur ayant déjà une base'),
+        ('H', 'Pour éleveur expérimenté'),
+        ('V', 'Pour éleveur très expérimenté')
+    )
+    CHARACTERS = (
+        ('F', 'Fuyard'),
+        ('P', 'Placide'),
+        ('C', 'Démonstratif'),
+        ('I', 'Irrascible'),
+    )
+    BITE_DANGEROSITIES = (
+        ('I', 'Innofensif'),
+        ('C', 'Pouvant entraîner des dommages'),
+        ('H', 'Dangereux'),
+        ('V', 'Extrêmenent dangereux')
+    )
+    VENOM_TOXICITIES_RISK = (
+        ('F', 'Faible toxicité'),
+        ('R', 'Nécessite une surveillance active'),
+        ('S', 'Hospitalisation immédiate recommandée'),
+        ('D', 'Hospitalisation immédiate (risque de décès)')
+    )
+    genus = models.CharField(max_length=64, verbose_name="Genre", help_text="Genre")
+    species = models.CharField(max_length=64, verbose_name="Espèce", help_text="espèce sous-espèce")
+    adult_male_size = models.PositiveIntegerField(verbose_name="Taille adulte mâle", help_text="en cm")
+    male_tail_size = models.PositiveIntegerField(verbose_name="Taille de la queue du mâle", help_text="en mm")
+    adult_female_size = models.PositiveIntegerField(verbose_name="Taille adulte femelle", help_text="en cm")
+    female_tail_size = models.PositiveIntegerField(verbose_name="Taille de la queue de la femelle", help_text="en mm")
+    prehensile_tail = models.BooleanField(verbose_name="Queue préhensile")
+    is_cites = models.BooleanField(verbose_name="Enregistré au CITES")
+    annex_cites = models.PositiveIntegerField(verbose_name="Annexe CITES", blank=True, default=0, help_text="0 = rien")
+    distribution = models.CharField(max_length=512, help_text="Pays où se trouvent l'espèce", verbose_name="Distribution")
+    comments = models.TextField(verbose_name="Commentaire", max_length=500, help_text="Maximum 500 caractères")
+    reproduction_type = models.CharField(max_length=1, choices=REPRODUCTION_TYPE, verbose_name="Type de reproduction", help_text="Type de reproduction")
+    reproduction_period = models.ManyToManyField(ReproductionPeriod, verbose_name="Période de reproduction", help_text="Période de reproduction")
+    born_size = models.PositiveIntegerField(verbose_name="Taille des juvéniles", help_text="Taille en cm")
+    main_mores = models.CharField(max_length=1, choices=M_MORES, verbose_name="Moeurs", help_text="Moeurs")
+    main_activity_period = models.CharField(max_length=1, choices=M_ACTIVITY_Period, verbose_name="Période d'activité", help_text="Période principale d'activité")
+    preys = models.ManyToManyField(Prey, verbose_name="Proies", help_text="Proies")
+    environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
+    venom = models.ManyToManyField(Venom, verbose_name="Est venimeux", help_text="Venin(s)")
+    venom_risks = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation", choices=VENOM_TOXICITIES_RISK, blank=True)
+    behavior = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère", help_text="Caractère principal en période d'activité")
+    dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
+    temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
+    temperature_low = models.PositiveIntegerField(verbose_name="Température point froid", help_text="Moyenne basse")
+    humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
+    minimal_vivarium_size = models.CharField(max_length=11, help_text="LxlxH en cm", verbose_name="Dimension minimale du terrarium")
+    detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien", help_text="Pour maintenir l'espèce ou la manipuler")
+    image = models.ImageField(upload_to=card_directory_path)
+    slug = models.SlugField(unique=True)
+    approved = models.BooleanField(null=True, verbose_name="Approuvé")
+
+    class Meta:
+        verbose_name = 'Lézard'
+        verbose_name_plural = 'Lézards'
+
+    def get_scientific_name(self):
+        return "{0} {1}".format(self.genus, self.species)
+
+    def save(self, *args, **kwargs):
+        self.genus = self.genus.capitalize()
+        self.species = self.species.lower()
+        if not self.slug:
+            _slug = self.get_scientific_name()
+            self.slug = slugify(_slug)
+        return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return "{0} {1}".format(self.genus, self.species)
