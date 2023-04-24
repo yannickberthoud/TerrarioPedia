@@ -27,21 +27,6 @@
                 {% endif %}
             </div>
             <div class="col-sm-6 fs-6">
-            {% if object.venom_risks %}
-                Danger de l'envenimation<br />
-                {% if object.venom_risks == 'F' %}
-                <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
-                {% endif %}
-                {% if object.venom_risks == 'R' %}
-                <img src="{% static 'image/jauges/2.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
-                {% endif %}
-                {% if object.venom_risks == 'S' %}
-                <img src="{% static 'image/jauges/3.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
-                {% endif %}
-                {% if object.venom_risks == 'D' %}
-                <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
-                {% endif %}
-            {% else %}
                 Danger de la morsure<br />
                 {% if object.dangerosity == 'I' %}
                 <img src="{% static 'image/jauges/1.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
@@ -55,8 +40,6 @@
                 {% if object.dangerosity == 'V' %}
                 <img src="{% static 'image/jauges/4.png' %}" class="img-fluid" width="150" height="90" title="TerrarioPedia - Difficulté de détention de {{ object.get_scientific_name }}" />
                 {% endif %}
-
-            {% endif %}
            </div>
             <hr />
         </div>
@@ -104,10 +87,6 @@
                             <td>{{ object.female_tail_size }} mm</td>
                         </tr>
                         {% endif %}
-                        <tr>
-                          <th scope="row">Queue préhensile</th>
-                          <td>{% if prehensile_queue %}Oui{% else %}Non{% endif %}</td>
-                        </tr>
                         <tr>
                             <th scope="row">Période de reproduction</th>
                             <td>{% for reproduction_period in object.reproduction_period.all %}

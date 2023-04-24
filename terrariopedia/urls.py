@@ -10,6 +10,7 @@ from django.contrib.auth import views as auth_views
 from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResultsView, AmphibianListView, AmphibianFormView, AmphibianDetailView, \
     LizardListView, LizardDetailView, LizardFormView
 
+
 urlpatterns = [
     path('recherche', SearchResultsView, name='search_cards'),
 

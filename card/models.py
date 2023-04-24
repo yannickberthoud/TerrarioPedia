@@ -243,7 +243,6 @@ class Lizard(models.Model):
     M_MORES = (
         ('B', 'Fouisseur'),
         ('T', 'Terrestre'),
-        ('S', 'Semi-arboricole'),
         ('A', 'Arboricole')
     )
     M_ACTIVITY_Period = (
@@ -274,19 +273,12 @@ class Lizard(models.Model):
         ('H', 'Dangereux'),
         ('V', 'Extrêmenent dangereux')
     )
-    VENOM_TOXICITIES_RISK = (
-        ('F', 'Faible toxicité'),
-        ('R', 'Nécessite une surveillance active'),
-        ('S', 'Hospitalisation immédiate recommandée'),
-        ('D', 'Hospitalisation immédiate (risque de décès)')
-    )
     genus = models.CharField(max_length=64, verbose_name="Genre", help_text="Genre")
     species = models.CharField(max_length=64, verbose_name="Espèce", help_text="espèce sous-espèce")
     adult_male_size = models.PositiveIntegerField(verbose_name="Taille adulte du mâle (SVL)", help_text="en cm")
     male_tail_size = models.PositiveIntegerField(verbose_name="Taille de la queue du mâle", help_text="en mm")
     adult_female_size = models.PositiveIntegerField(verbose_name="Taille adulte de la femelle (SVL)", help_text="en cm")
     female_tail_size = models.PositiveIntegerField(verbose_name="Taille de la queue de la femelle", help_text="en mm")
-    prehensile_tail = models.BooleanField(verbose_name="Queue préhensile")
     is_cites = models.BooleanField(verbose_name="Enregistré au CITES")
     annex_cites = models.PositiveIntegerField(verbose_name="Annexe CITES", blank=True, default=0, help_text="0 = rien")
     distribution = models.CharField(max_length=512, help_text="Pays où se trouvent l'espèce", verbose_name="Distribution")
@@ -298,8 +290,6 @@ class Lizard(models.Model):
     main_activity_period = models.CharField(max_length=1, choices=M_ACTIVITY_Period, verbose_name="Période d'activité", help_text="Période principale d'activité")
     preys = models.ManyToManyField(Prey, verbose_name="Proies", help_text="Proies")
     environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
-    venom = models.ManyToManyField(Venom, verbose_name="Est venimeux", help_text="Venin(s)")
-    venom_risks = models.CharField(max_length=1, verbose_name="niveau de toxicité", help_text="Dangerosité d'une envenimation", choices=VENOM_TOXICITIES_RISK, blank=True)
     behavior = models.CharField(max_length=1, choices=CHARACTERS, verbose_name="Caractère", help_text="Caractère principal en période d'activité")
     dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")

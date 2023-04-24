@@ -83,10 +83,10 @@ admin.site.register(Amphibian, AmphibienAdmin)
 class LizardAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Espèce', {'fields': ['genus', 'species', 'is_cites', 'annex_cites']}),
-        ('Caractéristiques', {'fields': ['adult_male_size', 'male_tail_size', 'adult_female_size', 'female_tail_size', 'prehensile_tail', 'distribution', 'preys', 'comments']}),
+        ('Caractéristiques', {'fields': ['adult_male_size', 'male_tail_size', 'adult_female_size', 'female_tail_size', 'distribution', 'preys', 'comments']}),
         ('Reproduction', {'fields': ['reproduction_type', 'reproduction_period', 'born_size']}),
         ('Activitées', {'fields': ['environments', 'behavior', 'main_mores', 'main_activity_period']}),
-        ('Morsure et Toxicologie', {'fields': ['dangerosity', 'venom', 'venom_risks']}),
+        ('Morsure et Toxicologie', {'fields': ['dangerosity']}),
         ('Terrarium', {'fields': ['detention_difficulty', 'minimal_vivarium_size', 'temperature_high', 'temperature_low', 'humidity']}),
         ('Image', {'fields': ['image']}),
         ('Approbation', {'fields': ['approved']}),
