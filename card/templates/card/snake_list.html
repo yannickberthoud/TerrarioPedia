@@ -20,7 +20,7 @@
         {% for object in objects %}
             <div class="col-sm-3">
                 <div class="card mt-1">
-                    <img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+                    <a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}"><img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}"></a>
                   <div class="card-body">
                     <h5 class="card-title"><a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
                   </div>
