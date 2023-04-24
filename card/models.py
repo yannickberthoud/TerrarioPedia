@@ -256,7 +256,7 @@ class Lizard(models.Model):
         ('I', 'Ovovivipare'),
     )
     DIFFICULTIES = (
-        ('S', 'Pour éleveur débutant (premier serpent)'),
+        ('S', 'Pour éleveur débutant (premier lézard)'),
         ('E', 'Pour éleveur ayant déjà une base'),
         ('H', 'Pour éleveur expérimenté'),
         ('V', 'Pour éleveur très expérimenté')
