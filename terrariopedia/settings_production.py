@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'member',
+    'suggestion'
 ]
 
 SITE_ID = 1
@@ -75,7 +76,7 @@ WSGI_APPLICATION = 'terrariopedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'terrariopedia_django',
+        'NAME': 'terrariopedia_django2',
         'USER': 'terrariopedia',
         'PASSWORD': 'Nebularis2018!',
         'HOST': 'postgresql-terrariopedia.alwaysdata.net',
