@@ -48,7 +48,6 @@ urlpatterns = [
     path("logout", view_logout, name="logout"),
     path("profile/", include('member.urls')),
 
-
     path('tinymce/', include('tinymce.urls')),
 
 
