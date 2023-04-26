@@ -22,9 +22,17 @@
                 <li class="nav-item"><a href="{% url 'snake_list' %}"
                                         title="TerrarioPedia - Fiches d'élevage de serpents"
                                         class="nav-link link-dark px-2">Serpents</a></li>
+                <li class="nav-item"><a href="{% url 'suggestion_list' %}"
+                                        class="nav-link link-dark px-2">Suggestions</a></li>
                 <li class="nav-item"><a href="/informations/"
                                         title="TerrarioPedia - À propos de TerrarioPedia"
                                         class="nav-link link-dark px-2">Informations prioritaires</a></li>
+                <li class="nav-item"><a href="https://discord.gg/wdM75gDgNx"
+                                        target="_blank"
+                                        title="TerrarioPedia - Rejoindre le Discord"
+                                        class="nav-link link-dark px-2">
+                    Rejoignez-nous sur Discord!
+                </a> </li>
             </ul>
             {% if request.user.is_authenticated %}
             <ul class="nav">

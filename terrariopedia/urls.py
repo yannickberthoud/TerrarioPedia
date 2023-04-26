@@ -10,6 +10,8 @@ from django.contrib.auth import views as auth_views
 from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResultsView, AmphibianListView, AmphibianFormView, AmphibianDetailView, \
     LizardListView, LizardDetailView, LizardFormView
 
+from suggestion.views import SuggestionListView, SuggestionDetailView, SuggestionCreateView
+
 
 urlpatterns = [
     path('recherche', SearchResultsView, name='search_cards'),
@@ -26,6 +28,11 @@ urlpatterns = [
     path('fiches-de-maintiens-lezards/', LizardListView.as_view(), name="lizard_list"),
     path('fiches-de-maintiens-lezards/ajouter/', LizardFormView.as_view(), name="lizard_create"),
     path('fiches-de-maintiens-lezards/<slug:slug>/', LizardDetailView.as_view(), name="lizard_details"),
+
+
+    path('suggestions/<int:pk>', SuggestionDetailView.as_view(), name="suggestion_details"),
+    path('suggestions/ajouter/', SuggestionCreateView.as_view(), name="suggestion_create"),
+    path('suggestions/', SuggestionListView.as_view(), name="suggestion_list"),
 
     path('admin/', admin.site.urls),
 

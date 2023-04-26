@@ -49,19 +49,6 @@ def SearchResultsView(request):
         snakes = Card.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
         amphibians = Amphibian.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
         lizards = Lizard.objects.filter(Q(genus__icontains=query) | Q(species__icontains=query)).order_by('genus', 'species')
-
-        """
-        listing = query.split(" ", 1)
-        genus = listing[0].capitalize()
-        
-        if len(listing) > 1:
-            species = listing[1]
-            snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
-            amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=species)).order_by('genus', 'species')
-        else:
-            snakes = Card.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus', 'species')
-            amphibians = Amphibian.objects.filter(Q(genus__contains=genus) | Q(species__contains=genus)).order_by('genus','species')
-        """
         return render(request, 'card/search.html', {'snakes': snakes, 'query': query, 'amphibians':amphibians, 'lizards':lizards}) #'amphibians': amphibians, 'query': query})
 def About(request):
     return render(request, 'card/about.html')

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-4">
+        <h2>Suggestion</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'suggestion_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de serpent">Nouvelle suggestion</a>
+        {% else %}
+        <a href="{% url 'login' %}" title="TerrarioPedia - Se connecter">Connectez-vous pour proposer une suggestion</a>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table caption-top">
+          <caption>Liste des suggestions de modifications</caption>
+        <thead>
+          <tr>
+            <th scope="col">Espèce</th>
+            <th scope="col">Proposé par</th>
+            <th scope="col">Suggestion</th>
+            <th scope="col">Créé le</th>
+            <th scope="col">Traité</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for object in objects %}
+          <tr>
+            <th scope="row"><a href="{% url 'suggestion_details' object.pk %}" title="TerrarioPedia - Suggestion de modification">{{ object.species }}</a></th>
+            <td>{{ object.owner.get_full_name }}</td>
+            <td>{{ object.suggestion|truncatewords:30 }}</td>
+              <td>{{ object.created_at|date:"d F Y" }}</td>
+            <td>{% if object.treaty %}Oui{% else %}Non{% endif %}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+      </div>
+    </div>
+{% endblock %}
