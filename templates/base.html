@@ -13,9 +13,18 @@
     <nav class="py-2 bg-body-tertiary border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
-                <li class="nav-item"><a href="/informations/"
-                                        title="TerrarioPedia - À propos de TerrarioPedia"
-                                        class="nav-link link-dark px-2">À lire en priorité</a></li>
+                {% load flatpages %}
+                {% get_flatpages as flatpages %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Base de connaissance
+                  </a>
+                  <ul class="dropdown-menu">
+                      {% for page in flatpages %}
+                        <li><a href="{{ page.url }}" class="dropdown-item" title="TerrarioPedia - {{ page.title }}">{{ page.title }}</a></li>
+                    {% endfor %}
+                  </ul>
+                </li>
                 <li class="nav-item"><a href="{% url 'amphibian_list' %}"
                                         title="TerrarioPedia - Fiches d'élevage d'amphibiens"
                                         class="nav-link link-dark px-2">Amphibiens</a></li>
