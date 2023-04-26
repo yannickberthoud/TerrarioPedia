@@ -6,21 +6,24 @@
 
 <div class="row">
     <h1>Communauté</h1>
+    <ul class="list-group list-group-flush">
         {% for object in objects %}
-            <div class="col-sm-3">
-                <div class="card mt-1">
-                            {% if request.user.profile.profile_picture %}
-                            <img src="{{ object.profile.profile_picture.url }}" height="200" width="300" class="card-img-top" alt="TerrarioPedia - {{ object.get_full_name }}">
-                            {% else %}
-                            <img src="{% static 'image/no_picture.jpg' %}" height="200" width="300" class="card-img-top" alt="TerrarioPedia - {{ object.get_full_name }}">
-                            {% endif %}
-
-                  <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'community_detail' object.pk %}" title="TerrarioPedia - {{ object.get_full_name }}">{{ object.get_full_name }}</a></h5>
-                      <p class="text-muted"><img src="{{ object.profile.country.flag }}" alt="{{ object.profile.country.name }}"/> {{ object.profile.country.name }}</p>
-                  </div>
+        <li class="list-group-item">
+            <div class="row">
+            <div class="col-md-1">
+            {% if object.profile.profile_picture.url is not null %}
+                <img src="{{ object.profile.profile_picture.url }}" height="512" width="512" class="img-fluid rounded" alt="TerrarioPedia - {{ object.get_full_name }}">
+            {% else %}
+                <img src="{% static 'image/no_picture.jpg' %}" height="512" width="512" class="img-fluid rounded" alt="TerrarioPedia - {{ object.get_full_name }}">
+            {% endif %}
                 </div>
-              </div>
+            <div class="col-md-11">
+                <a href="{% url 'community_detail' object.pk %}" title="TerrarioPedia - {{ object.get_full_name }}">{{ object.get_full_name }}</a><br />
+            <span class="text-muted"><img src="{{ object.profile.country.flag }}" alt="{{ object.profile.country.name }}"/> {{ object.profile.country.name }}</span>
+            </div>
+            </div>
+        </li>
         {% endfor %}
+    </ul>
 </div>
 {% endblock %}
