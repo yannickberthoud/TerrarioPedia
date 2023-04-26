@@ -8,11 +8,14 @@
     <link rel="stylesheet" href="{% static 'flags/sprite.css' %}">
     <title>TerrarioPedia - {% block title %}{% endblock %}</title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 <div class="container-fluid">
     <nav class="py-2 bg-body-tertiary border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
+                <li class="nav-item"><a href="/informations/"
+                                        title="TerrarioPedia - À propos de TerrarioPedia"
+                                        class="nav-link link-dark px-2">À lire en priorité</a></li>
                 <li class="nav-item"><a href="{% url 'amphibian_list' %}"
                                         title="TerrarioPedia - Fiches d'élevage d'amphibiens"
                                         class="nav-link link-dark px-2">Amphibiens</a></li>
@@ -22,21 +25,20 @@
                 <li class="nav-item"><a href="{% url 'snake_list' %}"
                                         title="TerrarioPedia - Fiches d'élevage de serpents"
                                         class="nav-link link-dark px-2">Serpents</a></li>
-                <li class="nav-item"><a href="{% url 'suggestion_list' %}"
-                                        class="nav-link link-dark px-2">Suggestions</a></li>
-                <li class="nav-item"><a href="/informations/"
-                                        title="TerrarioPedia - À propos de TerrarioPedia"
-                                        class="nav-link link-dark px-2">Informations prioritaires</a></li>
-                <li class="nav-item"><a href="https://discord.gg/wdM75gDgNx"
-                                        target="_blank"
-                                        title="TerrarioPedia - Rejoindre le Discord"
-                                        class="nav-link link-dark px-2">
-                    Rejoignez-nous sur Discord!
-                </a> </li>
+                <li class="nav-item"><a href="{% url 'community_list' %}"
+                                        title="TerrarioPedia - Membre de la communauté"
+                                        class="nav-link link-dark px-2">Communauté</a></li>
             </ul>
             {% if request.user.is_authenticated %}
             <ul class="nav">
-                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link link-dark px-2">Mon compte</a></li>
+                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link link-dark px-2">
+                    {% if request.user.profile.profile_picture %}
+                        <img src="{{ request.user.profile.profile_picture.url }}" height="32" width="32" class="img-fluid rounded" alt="TerrarioPedia - {{ request.user.get_full_name }}">
+                    {% else %}
+                        <img src="{% static 'image/no_picture.jpg' %}" height="32" width="32" class="img-fluid rounded" alt="TerrarioPedia - {{ request.user.get_full_name }}">
+                    {% endif %}
+                    Mon compte</a>
+                </li>
                 <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link link-dark px-2">Déconnexion</a></li>
             </ul>
             {% else %}
@@ -64,13 +66,25 @@
     </header>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-5 flex-shrink-0">
     {% block content %}{% endblock %}
 </div>
 
-<footer class="mt-5">
-    <div class="container">
-
+<footer class="footer mt-5 py-3 bg-light">
+    <div class="container bg-body-tertiary">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Communauté</h3>
+                <ul class="list-group list-group-flush bg-body-tertiary">
+                    <li class="list-group-item bg-body-tertiary"><a href="https://discord.gg/wdM75gDgNx"
+                                        target="_blank"
+                                        title="TerrarioPedia - Rejoindre le Discord" class="text-decoration-none">
+                    Rejoignez-nous sur Discord!
+                </a></li>
+          <li class="list-group-item bg-body-tertiary"><a href="{% url 'suggestion_list' %}" title="TerrarioPedia - Suggestions d'amélioration" class="text-decoration-none">Suggérez une modification</a></li>
+        </ul>
+            </div>
+        </div>
     </div>
 </footer>
 <script src="{% static 'js/jquery-3.6.4.min.js' %}"></script>

@@ -11,6 +11,7 @@ from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResu
     LizardListView, LizardDetailView, LizardFormView
 
 from suggestion.views import SuggestionListView, SuggestionDetailView, SuggestionCreateView
+from member.views import CommunityListView, CommunityDetailView
 
 
 urlpatterns = [
@@ -29,6 +30,8 @@ urlpatterns = [
     path('fiches-de-maintiens-lezards/ajouter/', LizardFormView.as_view(), name="lizard_create"),
     path('fiches-de-maintiens-lezards/<slug:slug>/', LizardDetailView.as_view(), name="lizard_details"),
 
+    path('communaute/<int:pk>', CommunityDetailView.as_view(), name="community_detail"),
+    path('communaute/', CommunityListView.as_view(), name="community_list"),
 
     path('suggestions/<int:pk>', SuggestionDetailView.as_view(), name="suggestion_details"),
     path('suggestions/ajouter/', SuggestionCreateView.as_view(), name="suggestion_create"),

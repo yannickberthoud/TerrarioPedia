@@ -17,6 +17,10 @@ class UpdateUserForm(forms.ModelForm):
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
     email = forms.EmailField(required=True,
                              widget=forms.TextInput(attrs={'class': 'form-control'}))
+    profile_picture = forms.ImageField(label="Photo de profil", widget=forms.ClearableFileInput(attrs={'multiple': False}), required=False)
+
+    current_species = forms.CharField(label="Vos espèces actuelles", help_text="Une espèce par ligne",
+                                    widget=forms.Textarea(attrs={"rows": "5"}))
 
     class Meta:
         model = User
@@ -26,10 +30,13 @@ class ProfileForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        self.fields['user'].widget.attrs['class'] = 'form-control invisible'
+        self.fields['profile_picture'].widget.attrs['class'] = 'form-control'
+        self.fields['current_species'].widget.attrs['class'] = 'form-control'
+
     class Meta:
         model = Profile
-        fields = ("country", "user")
+        fields = ("country", "profile_picture", "current_species")
         widgets = {
-            "country": CountrySelectWidget(attrs={"class": "form-select"})
+            "country": CountrySelectWidget(attrs={"class": "form-select"}),
+            'profile_picture': forms.ClearableFileInput(attrs={'multiple': False})
         }

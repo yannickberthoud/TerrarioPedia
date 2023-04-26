@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ card.get_scientific_name }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-4">
+        <figure class="figure">
+            {% if request.user.profile.profile_picture %}
+            <img src="{{ object.profile.profile_picture.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia {{ object.get_full_name }}">
+            {% else %}
+            <img src="{% static 'image/no_picture.jpg' %}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - {{ object.get_full_name }}">
+            {% endif %}
+        </figure>
+      {% if request.user.pk == object.pk %}<br/>
+      <a href="{% url 'profile' %}" class="btn btn-outline-success" title="TerrarioPedia - Modifier mon profil">Modifier mon profil</a>
+      {% endif %}
+    </div>
+    <div class="col-sm-8">
+        <div class="row"><h1>{{ object.get_full_name }}</h1>
+        <p class="fs-6 fw-lighter"><img src="{{ object.profile.country.flag }}" alt="TerrarioPedia {{ object.get_full_name }}"/> {{ object.profile.country.name }}</p></div>
+        <div class="row">
+          <h3>Espèces maintenues</h3>
+
+            {{ object.profile.current_species|linebreaks }}
+        </div>
+    </div>
+</div>
+{% endblock %}
