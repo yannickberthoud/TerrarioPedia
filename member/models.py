@@ -10,9 +10,9 @@ def photo_directory_path(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    country = CountryField(verbose_name="Pays")
+    country = CountryField(verbose_name="Pays", blank=True)
     profile_picture = models.ImageField(upload_to=photo_directory_path, verbose_name="Photo de profil", blank=True, null=True)
-    current_species = models.TextField(verbose_name="Vos espèces actuelles", help_text="Une espèce par ligne", blank=True)
+    current_species = models.TextField(verbose_name="Vos espèces actuelles", help_text="Une espèce par ligne", blank=True, null=True)
 
     def __str__(self):
         return self.country.name\

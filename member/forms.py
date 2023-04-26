@@ -20,7 +20,7 @@ class UpdateUserForm(forms.ModelForm):
     profile_picture = forms.ImageField(label="Photo de profil", widget=forms.ClearableFileInput(attrs={'multiple': False}), required=False)
 
     current_species = forms.CharField(label="Vos espèces actuelles", help_text="Une espèce par ligne",
-                                    widget=forms.Textarea(attrs={"rows": "5"}))
+                                    widget=forms.Textarea(attrs={"rows": "5"}), required=False)
 
     class Meta:
         model = User
