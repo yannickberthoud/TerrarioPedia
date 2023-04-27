@@ -87,7 +87,7 @@ class Card(models.Model):
         ('F', 'Fuyard'),
         ('P', 'Placide'),
         ('C', 'Démonstratif'),
-        ('I', 'Irrascible'),
+        ('I', 'Irascible'),
     )
     BITE_DANGEROSITIES = (
         ('I', 'Innofensif'),
