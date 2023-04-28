@@ -34,21 +34,33 @@
                 <li class="nav-item"><a href="{% url 'snake_list' %}"
                                         title="TerrarioPedia - Fiches d'élevage de serpents"
                                         class="nav-link link-dark px-2">Serpents</a></li>
+                <li class="nav-item"><a href="{% url 'ads_list' %}"
+                                        title="TerrarioPedia - Petites annonces"
+                                        class="nav-link link-dark px-2">Petites annonces</a></li>
                 <li class="nav-item"><a href="{% url 'community_list' %}"
                                         title="TerrarioPedia - Membre de la communauté"
                                         class="nav-link link-dark px-2">Communauté</a></li>
             </ul>
             {% if request.user.is_authenticated %}
             <ul class="nav">
-                <li class="nav-item"><a href="{% url 'profile' %}" class="nav-link link-dark px-2">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     {% if request.user.profile.profile_picture %}
                         <img src="{{ request.user.profile.profile_picture.url }}" height="32" width="32" class="img-fluid rounded" alt="TerrarioPedia - {{ request.user.get_full_name }}">
                     {% else %}
                         <img src="{% static 'image/no_picture.jpg' %}" height="32" width="32" class="img-fluid rounded" alt="TerrarioPedia - {{ request.user.get_full_name }}">
                     {% endif %}
-                    Mon compte</a>
+                    Mon compte
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'ads_own_list' %}" title="TerrarioPedia - Afficher mes annonces">Mes annonces</a></li>
+                    <li><a href="{% url 'ads_create' %}" class="dropdown-item" title="TerrarioPedia - Publier une annonces">Publier une annonce</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a href="{% url 'logout' %}" class="dropdown-item" title="TerrarioPedia - Déconnexion">Déconnexion</a></li>
+                  </ul>
                 </li>
-                <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link link-dark px-2">Déconnexion</a></li>
+
+
             </ul>
             {% else %}
             <ul class="nav">

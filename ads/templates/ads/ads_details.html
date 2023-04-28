@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ object.description }}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <a href="{% url 'ads_list' %}" title="TerrarioPedia - Voir les petites annonces">Voir toutes les annonces</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        {% if object.image %}
+        <figure class="figure">
+            <img src="{{ object.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Petite annonce">
+        </figure>
+        <hr />
+        {% endif %}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Propriétaire: {{ object.owner.get_full_name }}</li>
+          <li class="list-group-item">Date d'inscription: {{ object.owner.date_joined }}</li>
+          <li class="list-group-item">Dernière connexion: {{ object.owner.last_login }}</li>
+          <li class="list-group-item">Date de l'annonce: {{ object.created_at }}</li>
+        </ul>
+
+        {% if request.user == object.owner %}
+            <hr />
+            <a href="{% url 'ads_update' object.pk %}" class="btn btn-outline-success" title="TerrarioPedia - Modifier l'annonce">Modifier l'annonce</a>
+            <a href="{% url 'ads_delete' object.pk %}" class="btn btn-outline-danger" title="TerrarioPedia - Supprimer l'annonce">Supprimer l'annonce</a>
+        {% endif %}
+    </div>
+    <div class="col-sm-8">
+        <div class="row"><h1>Vente/Echange de  {{ object.get_category_display }}</h1>
+        <p class="fs-6 fw-lighter">{{ object.owner.get_full_name }} {% if object.type_of_ads == 'R' %}recherche{% elif object.type_of_ads == 'V' %}vend{% endif %} et/ou échange des {{ object.get_category_display }}</p></div>
+
+        <div class="row">
+            <div class="table-responsive-sm-12">
+                {{ object.description|linebreaks }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

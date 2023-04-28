@@ -13,6 +13,8 @@ from card.views import SnakeDetailView, SnakeListView, SnakeFormView, SearchResu
 from suggestion.views import SuggestionListView, SuggestionDetailView, SuggestionCreateView
 from member.views import CommunityListView, CommunityDetailView
 
+from ads.views import AdsListView, AdsDetailsView, AdsCreateView, AdsUpdateView, AdsDeleteView, AdsOwnListView, SearchAdsResultsView
+
 
 urlpatterns = [
     path('recherche', SearchResultsView, name='search_cards'),
@@ -32,6 +34,14 @@ urlpatterns = [
 
     path('communaute/<int:pk>', CommunityDetailView.as_view(), name="community_detail"),
     path('communaute/', CommunityListView.as_view(), name="community_list"),
+
+    path('petites-annonces/', AdsListView.as_view(), name="ads_list"),
+    path('petites-annonces/filtrer/', SearchAdsResultsView, name="ads_filter"),
+    path('petites-annonces/ajouter/', AdsCreateView.as_view(), name="ads_create"),
+    path('petites-annonces/mes-annonces/', AdsOwnListView.as_view(), name="ads_own_list"),
+    path('petites-annonces/<int:pk>/supprimer/', AdsDeleteView.as_view(), name="ads_delete"),
+    path('petites-annonces/<int:pk>', AdsDetailsView.as_view(), name="ads_details"),
+    path('petites-annonces/<int:pk>/update/', AdsUpdateView.as_view(), name="ads_update"),
 
     path('suggestions/<int:pk>', SuggestionDetailView.as_view(), name="suggestion_details"),
     path('suggestions/ajouter/', SuggestionCreateView.as_view(), name="suggestion_create"),

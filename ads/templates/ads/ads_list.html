@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Petites annonces{% endblock %}
+
+
+{% block content %}
+{% if query %}
+    <b>Votre recherche:</b> {{ query }}
+{% endif %}
+
+<div class="row">
+    <div class="col-4">
+        <h2>Petites annonces</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        <a href="{% url 'ads_create' %}" class="btn btn-outline-success" title="TerrarioPedia - Publier une annonce">Publier une annonce</a>
+    </div>
+</div>
+    <div class="row">
+        <form method="POST" action="{% url 'ads_filter' %}" class="row g-3">{% csrf_token %}
+            <div class="col-md-3">
+                <select class="form-select" name="type_of_ads" id="type_of_ads" aria-label="Default select example">
+                  <option value="R">Recherche</option>
+                  <option value="V">Vente</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+            <select class="form-select" name="category" id="category" aria-label="Default select example">
+              <option value="A">Amphibiens</option>
+                <option value="L">Lézards</option>
+              <option value="S">Serpents</option>
+                <option value="M">Matériels et terrariums</option>
+            </select>
+            </div>
+            <div class="col-md-3">
+                <input type="text" class="form-control" id="query" name="query" value="{{ query }}">
+            </div>
+            <div class="col-md-3">
+                <input type="submit" class="btn btn-primary" value="Filtrer"/>
+                <a href="{% url 'ads_list' %}" title="TerrarioPedia - Petites annonces" class="btn btn-outline-primary">Tout voir</a>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        {% for object in objects %}
+            <div class="col-sm-3">
+                <div class="card mt-1 {% if object.type_of_ads == 'R' %}border-danger{% elif object.type_of_ads == 'V' %}border-success{% endif %}">
+                    {% if object.image %}
+                    <a href="{% url 'ads_details' object.pk %}" class="text-decoration-none text-body" title="TerrarioPedia - Petite annonce de {{ objet.owner.get_full_name }}"><img src="{{ object.image.url }}" class="figure-img img-fluid rounded" alt="TerrarioPedia - Petite annonce"></a>
+                    {% endif %}
+                  <div class="card-body">
+                    <p><a href="{% url 'ads_details' object.pk %}" class="text-decoration-none text-body" title="TerrarioPedia - Petite annonce de {{ objet.owner.get_full_name }}">
+                        {{ object.description|truncatewords:25 }}
+                    </a></p>
+                  </div>
+                    <div class="card-footer">
+                        {{ object.owner.get_full_name }}
+                        <img src="{{ object.owner.profile.country.flag }}" />
+                        {{ object.created_at }}.
+                    </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endblock %}
