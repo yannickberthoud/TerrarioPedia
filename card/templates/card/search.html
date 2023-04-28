@@ -50,4 +50,28 @@
         {% endfor %}
     </div>
 {% endif %}
+{% if lizards %}
+<div class="row">
+    <div class="col-4">
+        <h2>Lézards</h2>
+    </div>
+    <div class="col-8 d-flex justify-content-end">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'lizard_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de lézard">Nouvelle fiche</a>
+        {% endif %}
+    </div>
+</div>
+    <div class="row">
+        {% for lizard in lizards %}
+            <div class="col-sm-3">
+                <div class="card mt-1">
+                    <img src="{{ lizard.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}">
+                  <div class="card-body">
+                    <h5 class="card-title"><a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}">{{ lizard.get_scientific_name }}</a></h5>
+                  </div>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endif %}
 {% endblock %}
