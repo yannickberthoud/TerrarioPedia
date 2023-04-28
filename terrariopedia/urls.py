@@ -19,7 +19,6 @@ from ads.views import AdsListView, AdsDetailsView, AdsCreateView, AdsUpdateView,
 urlpatterns = [
     path('recherche', SearchResultsView, name='search_cards'),
 
-
     path('fiches-de-maintiens-serpents/', SnakeListView.as_view(), name="snake_list"),
     path('fiches-de-maintiens-serpents/ajouter/', SnakeFormView.as_view(), name="snake_create"),
     path('fiches-de-maintiens-serpents/<slug:slug>/', SnakeDetailView.as_view(), name='snake_details'),
