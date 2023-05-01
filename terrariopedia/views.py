@@ -18,7 +18,7 @@ def register(request):
                 form.save()
                 messages.success(request, "Inscription réussie!")
                 return redirect("login")
-            messages.error(request, "Erreur d'enregistrement. Des informations semblent invalides.")
+            messages.warning(request, "Erreur d'enregistrement. Des informations semblent invalides.")
         form = NewUserForm()
         return render(request, template_name="registration/register.html", context={"register_form": form})
 
