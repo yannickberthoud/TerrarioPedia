@@ -7,7 +7,7 @@
     <div class="col-sm-4">
         {% if not object.approved %}<span class="text-danger">Cette fiche est en attente d'approbation par les experts.</span>{% endif %}
         <figure class="figure">
-            <img src="{{ object.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">
+            <img src="{{ object.image.url }}" class="figure-img img-fluid rounded mt-2" alt="TerrarioPedia - Fiches d'élevage de {{ object.get_scientific_name }}">
         </figure>
         <div class="row">
             <hr />
@@ -32,7 +32,7 @@
             {{ object.comments }}
         </p>
         <hr />
-        <a href="{% url 'suggestion_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de serpent">Proposer une modification</a>
+        <a href="{% url 'suggestion_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une Fiches d'élevage de serpent">Proposer une modification</a>
     </div>
     <div class="col-sm-8">
         <div class="row"><h1>{{ object.get_scientific_name }}</h1>

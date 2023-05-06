@@ -12,7 +12,7 @@
     </div>
     <div class="col-8 d-flex justify-content-end">
         {% if request.user.is_authenticated %}
-        <a href="{% url 'snake_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiche de maintien de serpent">Nouvelle fiche</a>
+        <a href="{% url 'snake_create' %}" class="btn btn-outline-success" title="TerrarioPedia - ajouter une fiches d'élevage de serpent">Nouvelle fiche</a>
         {% endif %}
     </div>
 </div>
@@ -20,9 +20,9 @@
         {% for object in objects %}
             <div class="col-sm-3">
                 <div class="card mt-1">
-                    <a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}"><img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}"></a>
+                    <a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ object.get_scientific_name }}"><img src="{{ object.image.url }}"  height="200" width="300" class="card-img-top" alt="TerrarioPedia - Fiches d'élevage de {{ object.get_scientific_name }}"></a>
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'snake_details' object.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ object.get_scientific_name }}">{{ object.get_scientific_name }}</a></h5>
                   </div>
                 </div>
               </div>

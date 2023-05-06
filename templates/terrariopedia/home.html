@@ -23,9 +23,9 @@
         {% for amphibian in amphibians %}
             <div class="col-md-6  col-sm-6">
                 <div class="card mt-1">
-                    <a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}"><img src="{{ amphibian.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}"></a>
+                    <a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ amphibian.get_scientific_name }}"><img src="{{ amphibian.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}"></a>
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ amphibian.get_scientific_name }}">{{ amphibian.get_scientific_name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'amphibian_details' amphibian.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ amphibian.get_scientific_name }}">{{ amphibian.get_scientific_name }}</a></h5>
                   </div>
                 </div>
               </div>
@@ -39,9 +39,9 @@
         {% for lizard in lizards %}
             <div class="col-md-6  col-sm-6">
                 <div class="card mt-1">
-                    <a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}"><img src="{{ lizard.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}"></a>
+                    <a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ lizard.get_scientific_name }}"><img src="{{ lizard.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}"></a>
                   <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ lizard.get_scientific_name }}">{{ lizard.get_scientific_name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'lizard_details' lizard.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ lizard.get_scientific_name }}">{{ lizard.get_scientific_name }}</a></h5>
                   </div>
                 </div>
               </div>
@@ -55,9 +55,9 @@
             {% for snake in snakes %}
                 <div class="col-md-6 col-sm-6">
                     <div class="card mt-1">
-                        <a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}"><img src="{{ snake.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}"></a>
+                        <a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ snake.get_scientific_name }}"><img src="{{ snake.image.url }}"  height="150" width="100" class="card-img-top" alt="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}"></a>
                       <div class="card-body">
-                        <h5 class="card-title"><a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiche de maintiens de {{ snake.get_scientific_name }}">{{ snake.get_scientific_name }}</a></h5>
+                        <h5 class="card-title"><a href="{% url 'snake_details' snake.slug %}" title="TerrarioPedia - Fiches d'élevage de {{ snake.get_scientific_name }}">{{ snake.get_scientific_name }}</a></h5>
                       </div>
                     </div>
                   </div>
