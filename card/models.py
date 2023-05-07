@@ -123,6 +123,9 @@ class Card(models.Model):
     dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
     temperature_low = models.PositiveIntegerField(verbose_name="Température point froid", help_text="Moyenne basse")
+    temperature_day = models.CharField(max_length=64, verbose_name="Température de jour", help_text="format : 24°C - 28°C", blank=True)
+    temperature_night = models.CharField(max_length=64, verbose_name="Température de jour",
+                                       help_text="format : 24°C - 28°C", blank=True)
     humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
     minimal_vivarium_size = models.CharField(max_length=11, help_text="LxlxH en cm", verbose_name="Dimension minimale du terrarium")
     detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien", help_text="Pour maintenir l'espèce ou la manipuler")
@@ -208,6 +211,10 @@ class Amphibian(models.Model):
     environments = models.ManyToManyField(Environment, verbose_name="Environnements", help_text="Milieux de vie")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
     temperature_low = models.PositiveIntegerField(verbose_name="Température point froid", help_text="Moyenne basse")
+    temperature_day = models.CharField(max_length=64, verbose_name="Température de jour",
+                                       help_text="format : 24°C - 28°C", blank=True)
+    temperature_night = models.CharField(max_length=64, verbose_name="Température de jour",
+                                         help_text="format : 24°C - 28°C", blank=True)
     humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
     can_swim = models.BooleanField(verbose_name="Espèce nageuse")
     aquatic_sp = models.BooleanField(verbose_name="Espèce aquatique")
@@ -294,6 +301,10 @@ class Lizard(models.Model):
     dangerosity = models.CharField(max_length=1, choices=BITE_DANGEROSITIES, verbose_name="Dangerosité", help_text="Dangerosité en cas de morsure")
     temperature_high = models.PositiveIntegerField(verbose_name="Température point chaud", help_text="Moyenne haute")
     temperature_low = models.PositiveIntegerField(verbose_name="Température point froid", help_text="Moyenne basse")
+    temperature_day = models.CharField(max_length=64, verbose_name="Température de jour",
+                                       help_text="format : 24°C - 28°C", blank=True)
+    temperature_night = models.CharField(max_length=64, verbose_name="Température de jour",
+                                         help_text="format : 24°C - 28°C", blank=True)
     humidity = models.PositiveIntegerField(verbose_name="Humidité", help_text="Humidité moyenne en %")
     minimal_vivarium_size = models.CharField(max_length=11, help_text="LxlxH en cm", verbose_name="Dimension minimale du terrarium")
     detention_difficulty = models.CharField(max_length=1, choices=DIFFICULTIES, verbose_name="Difficulté de maintien", help_text="Pour maintenir l'espèce ou la manipuler")

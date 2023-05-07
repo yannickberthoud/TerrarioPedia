@@ -12,6 +12,10 @@ db.sqlite3-journal
 media
 medias
 terrariopedia/settings.py
+card/migrations/
+member/migrations/
+ads/migrations/
+suggestion/migrations/
 settings.py
 static
 
